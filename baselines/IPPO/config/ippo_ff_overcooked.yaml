@@ -1,7 +1,7 @@
 "LR": 2.5e-4
-"NUM_ENVS": 16
+"NUM_ENVS": 128
 "NUM_STEPS": 128
-"TOTAL_TIMESTEPS": 5e6
+"TOTAL_TIMESTEPS": 1e7
 "UPDATE_EPOCHS": 4
 "NUM_MINIBATCHES": 4
 "GAMMA": 0.99
@@ -12,6 +12,14 @@
 "MAX_GRAD_NORM": 0.5
 "ACTIVATION": "tanh"
 "ENV_NAME": "overcooked"
-"ENV_KWARGS": 
-  "layout" : "cramped_room"
+# "ENV_KWARGS": 
+#   "layout" : "cramped_room"
+#"LAYOUTS": ["cramped_room", "asymm_advantages", "coord_ring", "forced_coord", "counter_circuit"]
+"LAYOUTS": ["cramped_room"]
 "ANNEAL_LR": True
+"NUM_SEEDS": 3
+
+# WandB Params
+"WANDB_MODE": "online"
+"ENTITY": "thichqwerty"
+"PROJECT": "r2i_mappo_overcooked"
