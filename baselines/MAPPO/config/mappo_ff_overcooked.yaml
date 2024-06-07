@@ -1,7 +1,6 @@
 "LR": 2.5e-4 # learning rate, see calculation of gradient of the loss function
-
-"NUM_ENVS": 200 # number of parallel env run (simultaneously) 16
-"NUM_STEPS": 400 # number of steps before model is updated
+"NUM_ENVS": 128 # number of parallel env run (simultaneously) 16
+"NUM_STEPS": 512 # number of steps before model is updated
 "TOTAL_TIMESTEPS": 1.0e+7 # 5.0e+6 # total number of steps (actions) taken during training
 "UPDATE_EPOCHS": 4 # model is updated x times per batch
 "NUM_MINIBATCHES": 4
