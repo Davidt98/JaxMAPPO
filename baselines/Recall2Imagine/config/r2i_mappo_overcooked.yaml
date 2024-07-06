@@ -1,0 +1,83 @@
+"LR": 2.5e-4
+"NUM_ENVS": 64
+"NUM_STEPS": 200
+# bei num_envs: 70, num_steps 440 waren (relativ) gute ergebnisse..
+"TOTAL_TIMESTEPS": 1.0e+7
+"UPDATE_EPOCHS": 4
+"NUM_MINIBATCHES": 4
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"CLIP_EPS": 0.2
+"SCALE_CLIP_EPS": False
+"ENT_COEF": 0.01
+"VF_COEF": 0.5
+"MAX_GRAD_NORM": 0.5
+"ACTIVATION": "tanh"
+"ENV_NAME": "overcooked"
+# "ENV_KWARGS": 
+#   "layout" : "cramped_room"
+# "LAYOUTS": ["cramped_room", "asymm_advantages", "coord_ring", "forced_coord", "counter_circuit"]
+"LAYOUTS": ["asymm_advantages"]
+"ANNEAL_LR": True
+"SEED": 0
+"NUM_SEEDS": 3
+
+# WandB Params
+"WANDB_MODE": "online"
+"ENTITY": "thichqwerty"
+"PROJECT": "r2i_mappo_overcooked"
+
+
+# Config for R2I part
+"rssm": {
+  deter: 4096, 
+  units: 1024, 
+  hidden: 128, 
+  stoch: 32, 
+  classes: 32, 
+  act: silu, 
+  norm: layer, 
+  initial: learned, 
+  unimix: 0.01, 
+  unroll: True, 
+  action_clip: 1.0, 
+  winit: normal, 
+  fan: avg, 
+  nonrecurrent_enc: False
+}
+
+"ssm": 
+  n_layers: 4 
+  prenorm: False
+  mlp: True
+  glu: True
+  dropout: 0.0
+  parallel: True
+  conv: False
+  use_norm: True
+
+"ssm_cell":
+  reset_mode: init
+  n_blocks: 8
+  C_init: trunc_standard_normal
+  conj_sym: False
+  discretization: bilinear
+  clip_eigs: False
+  dt_min: 0.001
+  dt_max: 0.1
+
+"ssm_type": mimo
+
+"reward_head": {
+  layers: 5,
+  units: 1024,
+  act: silu,
+  norm: layer,
+  dist: symlog_disc,
+  outscale: 0.0,
+  outnorm: False,
+  inputs: [deter, stoch],
+  winit: normal,
+  fan: avg,
+  bins: 255
+}
