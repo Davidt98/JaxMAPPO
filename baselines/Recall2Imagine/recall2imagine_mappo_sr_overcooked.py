@@ -64,34 +64,31 @@ class ActorFF(nn.Module):
 
     @nn.compact
     def __call__(self, obs, prev_action, is_first, prev_latent, rssm, mode="optimization"):
-
+        layer_size = 2 * self.config['NUM_ENVS'] # NOTE: match layer size with hp of 
         if self.config["ACTIVATION"] == "relu":
             activation = nn.relu
         else:
             activation = nn.tanh
         # NOTE: 5 files: raw (vanilla), only next other action pred, next action pred + r2i ideas, r2i ideas, r2i ideas next action pred with lstm
-        # NOTE: log losses indv and total, weight
+        # NOTE: when submitting r2i withtout next other action pred like in presentation, bc with noap worse results
 
         actor_mean = nn.Dense(
-            128, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
+            layer_size, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
         )(obs)
-
-        actor_mean = nn.Dense(
-            128, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
-        )(actor_mean)
-        actor_mean = activation(actor_mean) # embedded und post NOTE: activation fnc vor oder nach rssm?
+        actor_mean = activation(actor_mean)
         if hasattr(actor_mean, 'primal'):
             embed = actor_mean.primal
         else:
             embed = actor_mean
 
-        # TODO (XIMING): Finish next other action prediction and compare results (with and without)
-        # TODO (XIMING (?)): Implement imagine function in training loop
+        actor_mean = nn.Dense(
+            layer_size, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
+        )(actor_mean)
+        actor_mean = activation(actor_mean)
 
-        # use latent state to predict reward..
         initial_state = {'value': 0}
         rng = jax.random.PRNGKey(0)
-        if mode == "train":
+        if mode == "train" or mode == "init":
             obs_step = nj.pure(rssm.obs_step)
             latent, _ = obs_step(initial_state, rng, prev_latent, prev_action, embed, is_first)
             post, prior = latent[0], latent[1]
@@ -101,13 +98,34 @@ class ActorFF(nn.Module):
             latent, _ = observe(initial_state, rng, embed, prev_action, is_first, prev_latent)
             post, prior = latent[0], latent[1]
 
-        elif mode == "rollout":
-            prior = prior = ""
+        if mode != "rollout":
+            deter_flat = post['deter'].reshape(post['deter'].shape[0], -1) # NOTE: ersten zwei zeilen hier sind glaub nicht nötig..
+            hidden_flat = post['hidden'].reshape(post['hidden'].shape[0], -1)
+            logit_flat = post['logit'].reshape(post['logit'].shape[0], -1)
+            stoch_flat = post['stoch'].reshape(post['stoch'].shape[0], -1)
+            if mode == 'init':
+                embed = jnp.zeros((embed.shape[0], embed.shape[0]))
+            combined_feats = jnp.concatenate([deter_flat, hidden_flat, logit_flat, stoch_flat, embed], axis=-1)
+            x = jaxutils.symlog(combined_feats)
+            x = jaxutils.cast_to_compute(x)
+            for i in range(1):
+                x = nn.Dense(
+                    layer_size, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
+                )(x)       
 
-        actor_mean = nn.Dense(
-            128, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
-        )(actor_mean)
-        actor_mean = activation(actor_mean)
+            reward_predicted = nn.Dense(
+                1, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
+            )(x)
+            reward_predicted = jnp.mean(reward_predicted).reshape((1,))
+            reward_predicted = jnp.real(reward_predicted)
+
+            observation_predicted = nn.Dense(
+                self.config['flattened_obs_shape'], kernel_init=orthogonal(0.01), bias_init=constant(0.0)
+            )(x)
+            observation_predicted = jnp.real(observation_predicted)
+
+        elif mode == "rollout":
+            reward_predicted = observation_predicted = post = prior = ""
         action_logits = nn.Dense(
             self.action_dim, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
         )(actor_mean)
@@ -117,20 +135,6 @@ class ActorFF(nn.Module):
             self.action_dim, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
         )(actor_mean)
         other_action = distrax.Categorical(logits=other_action_logits)
-
-        reward_predicted = nn.Dense(
-            1, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
-        )(actor_mean)
-
-        # TODO: use prior and embed to predict reward
-        # feats = {**post, 'embed': embed}
-        # reward_head = nets.MLP((), **self.config['reward_head'], name="rew")
-        # reward_head = nj.pure(reward_head)
-        # reward_predicted = reward_head(feats)
-
-        observation_predicted = nn.Dense(
-            self.config['flattened_obs_shape'], kernel_init=orthogonal(0.01), bias_init=constant(0.0)
-        )(actor_mean)
 
         return pi, actor_mean, reward_predicted, observation_predicted, other_action, post, prior, prev_latent
 
@@ -175,18 +179,24 @@ class Transition(NamedTuple):
     prev_action: jnp.ndarray
     is_first: jnp.ndarray
     prev_latent: dict
+    other_action_pred: jnp.ndarray
 
 def get_rollout(train_state, config, layout, rssm):
     env = jaxmarl.make(config["ENV_NAME"], **layout)
     network_actor = ActorFF(env.action_space().n, config)
 
     key = jax.random.PRNGKey(0)
-    key, key_r, key_a = jax.random.split(key, 3)
+    key, key_r, key_a, rng_init = jax.random.split(key, 4)
 
     init_x = jnp.zeros(env.observation_space().shape)
     init_x = init_x.flatten()
 
-    prev_action = is_first = prev_latent = ""
+    prev_action = jnp.zeros((2 * config['NUM_ENVS'],1), dtype=jnp.float32)
+    is_first = jnp.ones((2 * config['NUM_ENVS'], 1), dtype=jnp.float32)
+    batch_size = 2 * config["NUM_ENVS"]
+    initial = nj.pure(rssm.initial)
+    initial_state = {'value': 0}
+    prev_latent, _ = initial(initial_state, rng_init, batch_size)
     network_actor.init(key_a, init_x, prev_action, is_first, prev_latent, rssm, mode="rollout")
     network_params = train_state[0][0].params
 
@@ -220,7 +230,7 @@ def unbatchify(x: jnp.ndarray, agent_list, num_envs, num_actors):
     x = x.reshape((num_actors, num_envs, -1))
     return {a: x[i] for i, a in enumerate(agent_list)}
 
-def make_train(config, layout):
+def make_train(config, layout, rssm):
 
     env = jaxmarl.make(config["ENV_NAME"], **layout)
 
@@ -250,16 +260,13 @@ def make_train(config, layout):
         ac_init_x = ac_init_x.flatten()
 
         prev_action = jnp.zeros((2 * config['NUM_ENVS'],1), dtype=jnp.float32)
-        is_first = jnp.ones((2 * config['NUM_ENVS'], 1), dtype=jnp.float32) # bool or float array?
-        rssm_config = dict(**config["rssm"], ssm_kwargs=dict(**config["ssm"], **config["ssm_cell"]), ssm=config["ssm_type"])
-        # rssm = ssm_nets.S3M(**rssm_config, name='rssm')
-        rssm = nets.GRU_RSSM(**config['rssm'], name='rssm')
-        batch_size = 2 * config["NUM_ENVS"] # NOTE: hier auf 1 setzen und spaeter stacken wegen 2 agents.. (?)
+        is_first = jnp.ones((2 * config['NUM_ENVS'], 1), dtype=jnp.float32)
+
+        batch_size = 2 * config["NUM_ENVS"]
         initial = nj.pure(rssm.initial)
         initial_state = {'value': 0}
         prev_latent, _ = initial(initial_state, rng_init, batch_size)
-
-        actor_network_params = actor_network.init(_rng_actor, ac_init_x, prev_action, is_first[0], prev_latent, rssm, mode="train")
+        actor_network_params = actor_network.init(_rng_actor, ac_init_x, prev_action, is_first[0], prev_latent, rssm, mode="init")
         world_size = env.observation_space().shape
         new_world_size = (world_size[0], world_size[1], world_size[2] * env.num_agents)
         world_size = jnp.zeros(new_world_size)
@@ -355,9 +362,10 @@ def make_train(config, layout):
                     prev_action,
                     is_first,
                     prev_latent,
+                    other_action
 
                 )
-                is_first = is_first.at[0, :].set(0) # NOTE: maybe need to convert to boolean (?)
+                is_first = is_first.at[0, :].set(0)
                 runner_state = (train_states, shapedRewardState, env_state, obsv, rng, prev_action, is_first, prev_latent)
                 return runner_state, transition
             runner_state, traj_batch = jax.lax.scan(
@@ -415,24 +423,22 @@ def make_train(config, layout):
                         log_prob = pi.log_prob(traj_batch.action)
 
                         # NEXT OTHER ACTION PREDICTION LOSS
-                        actual_other_action = pi.logits[1] # NOTE: investigate here, prob wrong
-                        predicted_other_action = other_action.logits[0]
-                        other_action_prediction_loss = optax.softmax_cross_entropy(predicted_other_action, actual_other_action)
-                        other_action_prediction_loss = jnp.mean(other_action_prediction_loss)
+                        other_action_pred_loss_weight = 9.0e-10
+                        log_softmax_preds = jax.nn.log_softmax(other_action.logits)
+                        other_action_prediction_loss = jnp.sum(traj_batch.other_action_pred.logits * log_softmax_preds)
 
                         # DECODER, REWARD LOSS
                         observation = traj_batch.obs.astype(jnp.float32)
                         decoder_loss = jnp.mean((observation_predicted - observation) ** 2)
-                        reward_loss = jnp.mean((reward_predicted - traj_batch.reward) ** 2) 
+                        reward_mean = jnp.mean(traj_batch.reward).reshape(1)
+                        reward_loss = jnp.mean(reward_predicted - reward_mean, -1) ** 2
 
                         # R2I WORLD MODEL REPRESENTATION LOSS
                         def wm_representation_loss(post, prior):
-                            loss = rssm.get_dist(sg(post)).kl_divergence(rssm.get_dist(prior))
+                            loss = rssm.get_dist(post).kl_divergence(rssm.get_dist(sg(prior)))
                             loss = jnp.mean(loss)
                             return loss
                         rep_loss = wm_representation_loss(post, prior)
-
-                        # IMAGINATION LOSS
 
                         # CALCULATE ACTOR LOSS
                         logratio = log_prob - traj_batch.log_prob
@@ -449,8 +455,14 @@ def make_train(config, layout):
                         )
                         loss_actor = -jnp.minimum(loss_actor1, loss_actor2)
                         loss_actor = loss_actor.mean()
-                        # NOTE: add weights? log losses add weights
-                        total_loss_actor = loss_actor + decoder_loss + reward_loss + other_action_prediction_loss + rep_loss
+                        
+                        # WEIGHTS
+                        rep_weight = 0.007
+                        dyn_weight = 0.007
+                        dec_weight = 0.06
+                        rew_weight = 1.2
+                        gae_weight = 1
+                        total_loss_actor = gae_weight * loss_actor  + dec_weight * decoder_loss + rew_weight * reward_loss + rep_weight * rep_loss#  + other_action_pred_loss_weight * other_action_prediction_loss
                         entropy = pi.entropy().mean()
                         
                         # For debug purposes
@@ -461,7 +473,18 @@ def make_train(config, layout):
                             total_loss_actor
                             - config["ENT_COEF"] * entropy
                         )
-                        return actor_loss, (total_loss_actor, entropy, ratio, approx_kl, clip_frac)
+                        return actor_loss, (
+                            total_loss_actor,
+                            entropy,
+                            ratio,
+                            approx_kl, 
+                            clip_frac, 
+                            gae_weight * loss_actor, 
+                            dec_weight * decoder_loss, 
+                            rew_weight * reward_loss, 
+                            rep_weight * rep_loss, 
+                            other_action_pred_loss_weight * other_action_prediction_loss
+                            )
                     
                     def _critic_loss_fn(critic_params, traj_batch, targets):
                         # RERUN NETWORK
@@ -478,17 +501,14 @@ def make_train(config, layout):
                         )
                         critic_loss = config["VF_COEF"] * value_loss
                         return critic_loss, (value_loss)
+                    
 
-                    # # NOTE: need? try later with dyn loss
-                    # def dyn_loss(self, post, prior, impl='kl', free=1.0):
-                    #     loss = self.get_dist(sg(post)).kl_divergence(self.get_dist(prior))
 
                     # Gradient calculation
                     actor_grad_fn = jax.value_and_grad(_actor_loss_fn, has_aux=True)
                     actor_loss, actor_grads = actor_grad_fn(
                         actor_train_state.params, traj_batch, advantages
                     )
-
                     critic_grad_fn = jax.value_and_grad(_critic_loss_fn, has_aux=True)
                     critic_loss, critic_grads = critic_grad_fn(
                         critic_train_state.params, traj_batch, targets
@@ -506,6 +526,11 @@ def make_train(config, layout):
                         "ratio": actor_loss[1][2],
                         "approx_kl": actor_loss[1][3],
                         "clip_frac": actor_loss[1][4],
+                        "actor_loss_only": actor_loss[1][5],
+                        "decoder_loss": actor_loss[1][6],
+                        "reward_loss": actor_loss[1][7],
+                        "rep_loss": actor_loss[1][8],
+                        "other_action_prediction_loss": actor_loss[1][9],
                     }
                     
                     return (actor_train_state, critic_train_state), loss_info
@@ -556,7 +581,7 @@ def make_train(config, layout):
             metric = traj_batch.info
             rng = update_state[-1]
 
-            def callback(metric, sr, traj_batch):
+            def callback(metric, sr, traj_batch, loss_info):
                 wandb.log({
                     "total_rewards": sr.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(axis=-1) + traj_batch.reward.sum(axis=0).mean(axis=-1),
                     "shaped_coefficient": sr.shaped_reward_coeff,
@@ -566,9 +591,16 @@ def make_train(config, layout):
                     "scaled_shaped_reward": sr.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(),
                     "scaled_reward": traj_batch.shaped_reward.sum(axis=0).mean(),
                     "base_reward": traj_batch.reward.sum(axis=0).mean(axis=-1),
+                    "total_actor_loss": loss_info["actor_loss"].sum(axis=0).mean(),
+                    "actor_loss_only": loss_info["actor_loss_only"].sum(axis=0).mean(),
+                    "decoder_loss": loss_info["decoder_loss"].sum(axis=0).mean(),
+                    "reward_loss": loss_info["reward_loss"].sum(axis=0).mean(),
+                    "rep_loss": loss_info["rep_loss"].sum(axis=0).mean(),
+                    "dyn_loss": loss_info["dyn_loss"].sum(axis=0).mean(),
+                    "other_action_prediction_loss": loss_info["other_action_prediction_loss"].sum(axis=0).mean(),
                 })
             metric["update_steps"] = update_steps
-            io_callback(callback, None, metric, shapedRewardState, traj_batch)
+            io_callback(callback, None, metric, shapedRewardState, traj_batch, loss_info)
             update_steps = update_steps + 1
             new_shaped_reward_coeff_value = jnp.maximum(0.0, 1 - (update_steps * config["NUM_ENVS"] * config["NUM_STEPS"] / config["TOTAL_TIMESTEPS"]))
             new_shaped_reward_coeff = jnp.full(
@@ -599,7 +631,7 @@ def main(config):
         wandb.init(
             name = f"{layout_name}_mappo",
             group="mappo",
-            tags=["mappo", f"{layout_name}", "no_sr"],
+            tags=["r2i", f"{layout_name}", "sr", "no_other_action_prediction", "mimo"],
             entity=config["ENTITY"],
             project=config["PROJECT"],
             config=config,
@@ -608,18 +640,22 @@ def main(config):
 
         rng = jax.random.PRNGKey(50)
 
-        train_jit = jax.jit(make_train(config, layout))
+        # TODO: generalize and add rssm type to config
+        rssm_config = dict(**config["rssm"], ssm_kwargs=dict(**config["ssm"], **config["ssm_cell"]), ssm=config["ssm_type"])
+        # rssm = ssm_nets.S3M(**rssm_config, name='rssm') # MIMO
+        rssm = nets.GRU_RSSM(**config['rssm'], name='rssm') # GRU
+
+        train_jit = jax.jit(make_train(config, layout, rssm))
         out = train_jit(rng)
         
         print(f'** Saving Results for {layout_name}')
-        filename = f'mappo_{config["ENV_NAME"]}_{layout_name}'
+        filename = f'r2i_mappo_{config["ENV_NAME"]}_{layout_name}'
 
         # Animate first seed
-        rssm_config = dict(**config["rssm"], ssm_kwargs=dict(**config["ssm"], **config["ssm_cell"]), ssm=config["ssm_type"])
-        rssm = ssm_nets.S3M(**rssm_config, name='rssm')
-        state_seq = get_rollout(out["runner_state"][0], config, layout, rssm)
-        viz = OvercookedVisualizer()
-        viz.animate(state_seq, agent_view_size=5, filename=f"{filename}.gif")
+        # NOTE: For some reason rollout doesn not work anymore init shape and actual shape do not match..
+        # state_seq = get_rollout(out["runner_state"][0], config, layout, rssm)
+        # viz = OvercookedVisualizer()
+        # viz.animate(state_seq, agent_view_size=5, filename=f"{filename}.gif")
 
         wandb.finish()
 

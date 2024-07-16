@@ -1,7 +1,12 @@
-"LR": 2.5e-4
-"NUM_ENVS": 64
-"NUM_STEPS": 200
-# bei num_envs: 70, num_steps 440 waren (relativ) gute ergebnisse..
+"LR": 3.5e-4 # used 3.5 in all runs! except for the run where 2.5 is written see slides
+# "LR": 3.5e-4 # siehe presentation, where LR: 3.5 wasnt specified 2.5 waas prob used
+"NUM_ENVS": 48 # final presentation param
+"NUM_STEPS": 256 # final presentation param
+# "LR": 3.5e-4
+# "NUM_ENVS": 128 # final presentation for code not using r2i impl
+# "NUM_STEPS": 512 # final presentation for code not using r2i impl
+# "TOTAL_TIMESTEPS": 7.5e+6
+# "TOTAL_TIMESTEPS": 1.0e+7 # 6.5e6 for final presentation run.. nochmal nachrechnen if doubts..
 "TOTAL_TIMESTEPS": 1.0e+7
 "UPDATE_EPOCHS": 4
 "NUM_MINIBATCHES": 4
@@ -47,7 +52,7 @@
 }
 
 "ssm": 
-  n_layers: 4 
+  n_layers: 2 # reduced from 4 bc of gpu memory  
   prenorm: False
   mlp: True
   glu: True
@@ -67,17 +72,3 @@
   dt_max: 0.1
 
 "ssm_type": mimo
-
-"reward_head": {
-  layers: 5,
-  units: 1024,
-  act: silu,
-  norm: layer,
-  dist: symlog_disc,
-  outscale: 0.0,
-  outnorm: False,
-  inputs: [deter, stoch],
-  winit: normal,
-  fan: avg,
-  bins: 255
-}
