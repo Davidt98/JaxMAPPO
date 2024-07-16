@@ -458,7 +458,6 @@ def make_train(config, layout, rssm):
                         
                         # WEIGHTS
                         rep_weight = 0.007
-                        dyn_weight = 0.007
                         dec_weight = 0.06
                         rew_weight = 1.2
                         gae_weight = 1
@@ -596,7 +595,6 @@ def make_train(config, layout, rssm):
                     "decoder_loss": loss_info["decoder_loss"].sum(axis=0).mean(),
                     "reward_loss": loss_info["reward_loss"].sum(axis=0).mean(),
                     "rep_loss": loss_info["rep_loss"].sum(axis=0).mean(),
-                    "dyn_loss": loss_info["dyn_loss"].sum(axis=0).mean(),
                     "other_action_prediction_loss": loss_info["other_action_prediction_loss"].sum(axis=0).mean(),
                 })
             metric["update_steps"] = update_steps
