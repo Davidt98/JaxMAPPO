@@ -372,7 +372,7 @@ def make_train(config):
 
 
 
-@hydra.main(version_base=None, config_path="config", config_name="ippo_ff_overcooked")
+@hydra.main(version_base=None, config_path="config", config_name="overcooked_vanilla")
 def main(config):
     config = OmegaConf.to_container(config) 
     layout_name = config["ENV_KWARGS"]["layout"]

@@ -1,0 +1,42 @@
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/flax/core/lift.py:137: RuntimeWarning: kwargs are not supported in vmap, so "training" is(are) ignored
+  warnings.warn(msg.format(name, ', '.join(kwargs.keys())), RuntimeWarning)
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/numpy/array_methods.py:733: UserWarning: Explicitly requested dtype <class 'jax.numpy.int64'> requested in astype is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/google/jax#current-gotchas for more.
+  return getattr(self.aval, name).fun(self, *args, **kwargs)
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/flax/core/lift.py:137: RuntimeWarning: kwargs are not supported in vmap, so "training" is(are) ignored
+  warnings.warn(msg.format(name, ', '.join(kwargs.keys())), RuntimeWarning)
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/numpy/array_methods.py:733: UserWarning: Explicitly requested dtype <class 'jax.numpy.int64'> requested in astype is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/google/jax#current-gotchas for more.
+  return getattr(self.aval, name).fun(self, *args, **kwargs)
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 644, in main
+    out = train_jit(rng)
+          ^^^^^^^^^^^^^^
+jaxlib.xla_extension.XlaRuntimeError: INTERNAL: Failed to execute XLA Runtime executable: run time error: custom call 'xla.gpu.custom_call' failed: CpuCallback error: KeyboardInterrupt: <EMPTY MESSAGE>
+At:
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/interpreters/mlir.py(2266): _wrapped_callback
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/interpreters/pxla.py(1144): __call__
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/profiler.py(314): wrapper
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/pjit.py(1151): _pjit_call_impl_python
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/pjit.py(1195): call_impl_cache_miss
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/pjit.py(1211): _pjit_call_impl
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/core.py(869): process_primitive
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/core.py(389): bind_with_trace
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/core.py(2657): bind
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/pjit.py(166): _python_pjit_helper
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/pjit.py(255): cache_miss
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/traceback_util.py(177): reraise_with_filtered_traceback
+  /home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py(644): main
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/core/utils.py(186): run_job
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/_internal/hydra.py(119): run
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/_internal/utils.py(458): <lambda>
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/_internal/utils.py(220): run_and_report
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/_internal/utils.py(457): _run_app
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/_internal/utils.py(394): _run_hydra
+  /home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/hydra/main.py(94): decorated_main
+  /home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py(658): <module>
+  <frozen runpy>(88): _run_code
+  <frozen runpy>(198): _run_module_as_main
+; current tracing scope: custom-call.371; current profiling annotation: XlaModule:#hlo_module=jit_train,program_id=14#.
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

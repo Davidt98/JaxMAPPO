@@ -1,0 +1,70 @@
+"LR": 3.5e-4
+"NUM_ENVS": 48
+"NUM_STEPS": 256
+"TOTAL_TIMESTEPS": 7.5e+6
+"UPDATE_EPOCHS": 4
+"NUM_MINIBATCHES": 4
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"CLIP_EPS": 0.2
+"SCALE_CLIP_EPS": False
+"ENT_COEF": 0.01
+"VF_COEF": 0.5
+"MAX_GRAD_NORM": 0.5
+"ACTIVATION": "tanh"
+"ENV_NAME": "overcooked"
+"SR": "yes"
+
+"LAYOUTS": ["cramped_room", "asymm_advantages", "coord_ring", "forced_coord", "counter_circuit"]
+# "LAYOUTS": ["cramped_room", "asymm_advantages"]
+# "LAYOUTS": ["asymm_advantages"]
+"ANNEAL_LR": True
+"SEED": 0
+"NUM_SEEDS": 3
+
+# WandB Params
+"WANDB_MODE": "online"
+"ENTITY": "thichqwerty"
+"PROJECT": "r2i_mappo_overcooked"
+
+
+# R2I
+"rssm": {
+  deter: 4096, 
+  units: 1024, 
+  hidden: 128, 
+  stoch: 32, 
+  classes: 32, 
+  act: silu, 
+  norm: layer, 
+  initial: learned, 
+  unimix: 0.01, 
+  unroll: True, 
+  action_clip: 1.0, 
+  winit: normal, 
+  fan: avg, 
+  nonrecurrent_enc: False
+}
+
+"ssm": 
+  n_layers: 2 # reduced from 4 bc of gpu memory  
+  prenorm: False
+  mlp: True
+  glu: True
+  dropout: 0.0
+  parallel: True
+  conv: False
+  use_norm: True
+
+"ssm_cell":
+  reset_mode: init
+  n_blocks: 8
+  C_init: trunc_standard_normal
+  conj_sym: False
+  discretization: bilinear
+  clip_eigs: False
+  dt_min: 0.001
+  dt_max: 0.1
+
+# SSM TYPE
+"ssm_type": mimo

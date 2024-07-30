@@ -1,0 +1,189 @@
+2024-07-30 17:44:41,031 INFO    StreamThr :28750 [internal.py:wandb_internal():85] W&B internal server running at pid: 28750, started at: 2024-07-30 17:44:41.031141
+2024-07-30 17:44:41,033 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: status
+2024-07-30 17:44:41,035 INFO    WriterThread:28750 [datastore.py:open_for_write():87] open: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/run-taucphic.wandb
+2024-07-30 17:44:41,035 DEBUG   SenderThread:28750 [sender.py:send():379] send: header
+2024-07-30 17:44:41,038 DEBUG   SenderThread:28750 [sender.py:send():379] send: run
+2024-07-30 17:44:41,539 INFO    SenderThread:28750 [dir_watcher.py:__init__():211] watching files in: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files
+2024-07-30 17:44:41,539 INFO    SenderThread:28750 [sender.py:_start_run_threads():1188] run started: taucphic with start time 1722354281.031016
+2024-07-30 17:44:41,549 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: check_version
+2024-07-30 17:44:41,549 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: check_version
+2024-07-30 17:44:41,616 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: run_start
+2024-07-30 17:44:41,622 DEBUG   HandlerThread:28750 [system_info.py:__init__():26] System info init
+2024-07-30 17:44:41,622 DEBUG   HandlerThread:28750 [system_info.py:__init__():41] System info init done
+2024-07-30 17:44:41,622 INFO    HandlerThread:28750 [system_monitor.py:start():194] Starting system monitor
+2024-07-30 17:44:41,622 INFO    SystemMonitor:28750 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-07-30 17:44:41,622 INFO    HandlerThread:28750 [system_monitor.py:probe():214] Collecting system info
+2024-07-30 17:44:41,622 INFO    SystemMonitor:28750 [interfaces.py:start():188] Started cpu monitoring
+2024-07-30 17:44:41,623 INFO    SystemMonitor:28750 [interfaces.py:start():188] Started disk monitoring
+2024-07-30 17:44:41,623 INFO    SystemMonitor:28750 [interfaces.py:start():188] Started gpu monitoring
+2024-07-30 17:44:41,623 INFO    SystemMonitor:28750 [interfaces.py:start():188] Started memory monitoring
+2024-07-30 17:44:41,623 INFO    SystemMonitor:28750 [interfaces.py:start():188] Started network monitoring
+2024-07-30 17:44:41,633 DEBUG   HandlerThread:28750 [system_info.py:probe():152] Probing system
+2024-07-30 17:44:41,634 DEBUG   HandlerThread:28750 [system_info.py:_probe_git():137] Probing git
+2024-07-30 17:44:41,638 DEBUG   HandlerThread:28750 [system_info.py:_probe_git():145] Probing git done
+2024-07-30 17:44:41,638 DEBUG   HandlerThread:28750 [system_info.py:probe():200] Probing system done
+2024-07-30 17:44:41,638 DEBUG   HandlerThread:28750 [system_monitor.py:probe():223] {'os': 'Linux-6.5.0-44-generic-x86_64-with-glibc2.35', 'python': '3.12.3', 'heartbeatAt': '2024-07-30T15:44:41.633482', 'startedAt': '2024-07-30T15:44:41.023939', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '-m baselines.Recall2Imagine.r2i_mappo_sr_overcooked', 'codePathLocal': None, 'git': {'remote': 'https://github.com/Davidt98/JaxMAPPO.git', 'commit': '7a1506e4a574b9d76eb95407752d428afc0dcf62'}, 'email': 'thichqwerty@hotmail.com', 'root': '/home/thich1998/Workspace/JaxMAPPO', 'host': 'DavidUbuntu', 'username': 'thich1998', 'executable': '/home/thich1998/miniconda3/envs/r2i_mappo/bin/python', 'cpu_count': 14, 'cpu_count_logical': 20, 'cpu_freq': {'current': 1825.2387000000003, 'min': 400.0, 'max': 4180.0}, 'cpu_freq_per_core': [{'current': 3661.1, 'min': 400.0, 'max': 4600.0}, {'current': 725.039, 'min': 400.0, 'max': 4600.0}, {'current': 2956.147, 'min': 400.0, 'max': 4600.0}, {'current': 400.0, 'min': 400.0, 'max': 4600.0}, {'current': 3860.15, 'min': 400.0, 'max': 4700.0}, {'current': 400.0, 'min': 400.0, 'max': 4700.0}, {'current': 4378.866, 'min': 400.0, 'max': 4700.0}, {'current': 400.0, 'min': 400.0, 'max': 4700.0}, {'current': 4133.879, 'min': 400.0, 'max': 4600.0}, {'current': 4376.586, 'min': 400.0, 'max': 4600.0}, {'current': 3562.489, 'min': 400.0, 'max': 4600.0}, {'current': 1711.085, 'min': 400.0, 'max': 4600.0}, {'current': 1419.026, 'min': 400.0, 'max': 3500.0}, {'current': 654.271, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}, {'current': 1439.877, 'min': 400.0, 'max': 3500.0}, {'current': 826.259, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}], 'disk': {'/': {'total': 793.2809143066406, 'used': 103.42181015014648}}, 'gpu': 'NVIDIA GeForce RTX 3070 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3070 Laptop GPU', 'memory_total': 8589934592}], 'memory': {'total': 31.06570053100586}}
+2024-07-30 17:44:41,638 INFO    HandlerThread:28750 [system_monitor.py:probe():224] Finished collecting system info
+2024-07-30 17:44:41,638 INFO    HandlerThread:28750 [system_monitor.py:probe():227] Publishing system info
+2024-07-30 17:44:41,638 DEBUG   HandlerThread:28750 [system_info.py:_save_conda():209] Saving list of conda packages installed into the current environment
+2024-07-30 17:44:42,539 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/conda-environment.yaml
+2024-07-30 17:44:42,655 DEBUG   HandlerThread:28750 [system_info.py:_save_conda():224] Saving conda packages done
+2024-07-30 17:44:42,656 INFO    HandlerThread:28750 [system_monitor.py:probe():229] Finished publishing system info
+2024-07-30 17:44:42,661 DEBUG   SenderThread:28750 [sender.py:send():379] send: files
+2024-07-30 17:44:42,661 INFO    SenderThread:28750 [sender.py:_save_file():1454] saving file wandb-metadata.json with policy now
+2024-07-30 17:44:42,704 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: python_packages
+2024-07-30 17:44:42,704 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: python_packages
+2024-07-30 17:44:42,705 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:44:42,705 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:44:42,706 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:44:43,271 INFO    wandb-upload_0:28750 [upload_job.py:push():130] Uploaded file /tmp/tmp3qt3lghswandb/620cbji8-wandb-metadata.json
+2024-07-30 17:44:43,539 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/conda-environment.yaml
+2024-07-30 17:44:43,539 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/wandb-metadata.json
+2024-07-30 17:44:43,539 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/requirements.txt
+2024-07-30 17:44:43,733 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:44:44,987 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:44:46,652 DEBUG   SenderThread:28750 [sender.py:send():379] send: telemetry
+2024-07-30 17:44:46,653 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:44:46,655 DEBUG   SenderThread:28750 [sender.py:send():379] send: exit
+2024-07-30 17:44:46,655 INFO    SenderThread:28750 [sender.py:send_exit():586] handling exit code: 1
+2024-07-30 17:44:46,656 INFO    SenderThread:28750 [sender.py:send_exit():588] handling runtime: 2
+2024-07-30 17:44:46,657 INFO    SenderThread:28750 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:44:46,657 INFO    SenderThread:28750 [sender.py:send_exit():594] send defer
+2024-07-30 17:44:46,658 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:44:46,658 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,658 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 0
+2024-07-30 17:44:46,658 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,659 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 0
+2024-07-30 17:44:46,659 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 1
+2024-07-30 17:44:46,659 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,659 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 1
+2024-07-30 17:44:46,659 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,659 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 1
+2024-07-30 17:44:46,659 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 2
+2024-07-30 17:44:46,659 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,659 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 2
+2024-07-30 17:44:46,659 INFO    HandlerThread:28750 [system_monitor.py:finish():203] Stopping system monitor
+2024-07-30 17:44:46,660 DEBUG   SystemMonitor:28750 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-07-30 17:44:46,660 DEBUG   SystemMonitor:28750 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-07-30 17:44:46,660 DEBUG   SystemMonitor:28750 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-07-30 17:44:46,661 INFO    HandlerThread:28750 [interfaces.py:finish():200] Joined cpu monitor
+2024-07-30 17:44:46,661 INFO    HandlerThread:28750 [interfaces.py:finish():200] Joined disk monitor
+2024-07-30 17:44:46,687 INFO    HandlerThread:28750 [interfaces.py:finish():200] Joined gpu monitor
+2024-07-30 17:44:46,688 INFO    HandlerThread:28750 [interfaces.py:finish():200] Joined memory monitor
+2024-07-30 17:44:46,688 INFO    HandlerThread:28750 [interfaces.py:finish():200] Joined network monitor
+2024-07-30 17:44:46,688 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,688 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 2
+2024-07-30 17:44:46,688 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 3
+2024-07-30 17:44:46,688 DEBUG   SenderThread:28750 [sender.py:send():379] send: stats
+2024-07-30 17:44:46,688 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,688 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 3
+2024-07-30 17:44:46,688 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,688 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 3
+2024-07-30 17:44:46,688 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 4
+2024-07-30 17:44:46,688 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,688 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 4
+2024-07-30 17:44:46,689 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,689 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 4
+2024-07-30 17:44:46,689 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 5
+2024-07-30 17:44:46,689 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,689 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 5
+2024-07-30 17:44:46,689 DEBUG   SenderThread:28750 [sender.py:send():379] send: summary
+2024-07-30 17:44:46,689 INFO    SenderThread:28750 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:44:46,689 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,689 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 5
+2024-07-30 17:44:46,689 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 6
+2024-07-30 17:44:46,689 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,689 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 6
+2024-07-30 17:44:46,690 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,690 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 6
+2024-07-30 17:44:46,691 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:44:46,966 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 7
+2024-07-30 17:44:46,966 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:46,966 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 7
+2024-07-30 17:44:46,966 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:46,966 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 7
+2024-07-30 17:44:46,988 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:44:47,541 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/config.yaml
+2024-07-30 17:44:47,541 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/output.log
+2024-07-30 17:44:47,541 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/wandb-summary.json
+2024-07-30 17:44:48,662 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 8
+2024-07-30 17:44:48,662 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:44:48,662 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:48,662 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 8
+2024-07-30 17:44:48,662 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:48,662 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 8
+2024-07-30 17:44:48,662 INFO    SenderThread:28750 [job_builder.py:build():440] Attempting to build job artifact
+2024-07-30 17:44:48,662 INFO    SenderThread:28750 [job_builder.py:_get_source_type():569] is repo sourced job
+2024-07-30 17:44:48,662 WARNING SenderThread:28750 [job_builder.py:_log_if_verbose():274] No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+2024-07-30 17:44:48,662 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 9
+2024-07-30 17:44:48,662 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:48,662 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 9
+2024-07-30 17:44:48,663 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:48,663 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 9
+2024-07-30 17:44:48,663 INFO    SenderThread:28750 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-07-30 17:44:48,990 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:44:49,542 INFO    Thread-12 :28750 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/output.log
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():388] scan: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/conda-environment.yaml conda-environment.yaml
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/config.yaml config.yaml
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/wandb-metadata.json wandb-metadata.json
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/output.log output.log
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/requirements.txt requirements.txt
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/wandb-summary.json wandb-summary.json
+2024-07-30 17:44:49,543 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 10
+2024-07-30 17:44:49,543 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:44:49,544 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:49,545 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 10
+2024-07-30 17:44:49,545 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:49,545 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 10
+2024-07-30 17:44:49,545 INFO    SenderThread:28750 [file_pusher.py:finish():169] shutting down file pusher
+2024-07-30 17:44:49,992 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:44:49,993 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:44:50,031 INFO    wandb-upload_4:28750 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/wandb-summary.json
+2024-07-30 17:44:50,033 INFO    wandb-upload_2:28750 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/output.log
+2024-07-30 17:44:50,034 INFO    wandb-upload_3:28750 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/requirements.txt
+2024-07-30 17:44:50,035 INFO    wandb-upload_0:28750 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/conda-environment.yaml
+2024-07-30 17:44:50,073 INFO    wandb-upload_1:28750 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/files/config.yaml
+2024-07-30 17:44:50,274 INFO    Thread-11 (_thread_body):28750 [sender.py:transition_state():614] send defer: 11
+2024-07-30 17:44:50,275 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:50,276 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 11
+2024-07-30 17:44:50,277 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:50,277 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 11
+2024-07-30 17:44:50,277 INFO    SenderThread:28750 [file_pusher.py:join():175] waiting for file pusher
+2024-07-30 17:44:50,278 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 12
+2024-07-30 17:44:50,279 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:50,279 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 12
+2024-07-30 17:44:50,279 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:50,280 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 12
+2024-07-30 17:44:50,280 INFO    SenderThread:28750 [file_stream.py:finish():601] file stream finish called
+2024-07-30 17:44:50,544 INFO    SenderThread:28750 [file_stream.py:finish():605] file stream finish is done
+2024-07-30 17:44:50,545 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 13
+2024-07-30 17:44:50,545 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:50,545 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 13
+2024-07-30 17:44:50,546 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:50,546 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 13
+2024-07-30 17:44:50,546 INFO    SenderThread:28750 [sender.py:transition_state():614] send defer: 14
+2024-07-30 17:44:50,547 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:44:50,548 INFO    HandlerThread:28750 [handler.py:handle_request_defer():184] handle defer: 14
+2024-07-30 17:44:50,548 DEBUG   SenderThread:28750 [sender.py:send():379] send: final
+2024-07-30 17:44:50,548 DEBUG   SenderThread:28750 [sender.py:send():379] send: footer
+2024-07-30 17:44:50,549 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:44:50,549 INFO    SenderThread:28750 [sender.py:send_request_defer():610] handle sender defer: 14
+2024-07-30 17:44:50,550 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:44:50,550 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:44:50,551 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: server_info
+2024-07-30 17:44:50,551 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:44:50,552 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: get_summary
+2024-07-30 17:44:50,552 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: server_info
+2024-07-30 17:44:50,554 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: sampled_history
+2024-07-30 17:44:50,554 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:44:50,748 DEBUG   SenderThread:28750 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:44:50,749 INFO    MainThread:28750 [wandb_run.py:_footer_history_summary_info():3991] rendering history
+2024-07-30 17:44:50,749 INFO    MainThread:28750 [wandb_run.py:_footer_history_summary_info():4023] rendering summary
+2024-07-30 17:44:50,750 INFO    MainThread:28750 [wandb_run.py:_footer_sync_info():3950] logging synced files
+2024-07-30 17:44:50,750 DEBUG   HandlerThread:28750 [handler.py:handle_request():158] handle_request: shutdown
+2024-07-30 17:44:50,751 INFO    HandlerThread:28750 [handler.py:finish():882] shutting down handler
+2024-07-30 17:44:51,552 INFO    WriterThread:28750 [datastore.py:close():296] close: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174441-taucphic/run-taucphic.wandb
+2024-07-30 17:44:51,749 INFO    SenderThread:28750 [sender.py:finish():1608] shutting down sender
+2024-07-30 17:44:51,749 INFO    SenderThread:28750 [file_pusher.py:finish():169] shutting down file pusher
+2024-07-30 17:44:51,750 INFO    SenderThread:28750 [file_pusher.py:join():175] waiting for file pusher

@@ -1,0 +1,147 @@
+{
+    "os": "Linux-6.5.0-44-generic-x86_64-with-glibc2.35",
+    "python": "3.12.3",
+    "heartbeatAt": "2024-07-30T15:44:08.854973",
+    "startedAt": "2024-07-30T15:44:08.257035",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "-m baselines.Recall2Imagine.r2i_mappo_sr_overcooked",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/Davidt98/JaxMAPPO.git",
+        "commit": "7a1506e4a574b9d76eb95407752d428afc0dcf62"
+    },
+    "email": "thichqwerty@hotmail.com",
+    "root": "/home/thich1998/Workspace/JaxMAPPO",
+    "host": "DavidUbuntu",
+    "username": "thich1998",
+    "executable": "/home/thich1998/miniconda3/envs/r2i_mappo/bin/python",
+    "cpu_count": 14,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 1840.7589999999996,
+        "min": 400.0,
+        "max": 4180.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4024.033,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1229.594,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1890.007,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3911.889,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 4037.305,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4182.107,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4043.429,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3691.162,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 4003.523,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 881.012,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3046.001,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 2918.523,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 2894.094,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 3500.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 793.2809143066406,
+            "used": 103.42167663574219
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+            "memory_total": 8589934592
+        }
+    ],
+    "memory": {
+        "total": 31.06570053100586
+    }
+}

@@ -1,0 +1,30 @@
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Current SDK version is 0.17.4
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Configure stats pid to 28261
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Loading settings from /home/thich1998/.config/wandb/settings
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Loading settings from /home/thich1998/Workspace/JaxMAPPO/wandb/settings
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-07-30 17:44:08,258 WARNING MainThread:28261 [wandb_setup.py:_flush():76] Could not find program at -m baselines.Recall2Imagine.r2i_mappo_sr_overcooked
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '-m baselines.Recall2Imagine.r2i_mappo_sr_overcooked'}
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_init.py:_log_setup():529] Logging user logs to /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174408-1zkf2fk6/logs/debug.log
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_init.py:_log_setup():530] Logging internal logs to /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174408-1zkf2fk6/logs/debug-internal.log
+2024-07-30 17:44:08,258 INFO    MainThread:28261 [wandb_init.py:init():569] calling init triggers
+2024-07-30 17:44:08,259 INFO    MainThread:28261 [wandb_init.py:init():576] wandb.init called with sweep_config: {}
+config: {'LR': 0.00035, 'NUM_ENVS': 48, 'NUM_STEPS': 256, 'TOTAL_TIMESTEPS': 7500000.0, 'UPDATE_EPOCHS': 4, 'NUM_MINIBATCHES': 4, 'GAMMA': 0.99, 'GAE_LAMBDA': 0.95, 'CLIP_EPS': 0.2, 'SCALE_CLIP_EPS': False, 'ENT_COEF': 0.01, 'VF_COEF': 0.5, 'MAX_GRAD_NORM': 0.5, 'ACTIVATION': 'tanh', 'ENV_NAME': 'overcooked', 'LAYOUTS': ['cramped_room', 'asymm_advantages'], 'ANNEAL_LR': True, 'SEED': 0, 'NUM_SEEDS': 3, 'WANDB_MODE': 'online', 'ENTITY': 'thichqwerty', 'PROJECT': 'r2i_mappo_overcooked', 'rssm': {'deter': 4096, 'units': 1024, 'hidden': 128, 'stoch': 32, 'classes': 32, 'act': 'silu', 'norm': 'layer', 'initial': 'learned', 'unimix': 0.01, 'unroll': True, 'action_clip': 1.0, 'winit': 'normal', 'fan': 'avg', 'nonrecurrent_enc': False}, 'ssm': {'n_layers': 2, 'prenorm': False, 'mlp': True, 'glu': True, 'dropout': 0.0, 'parallel': True, 'conv': False, 'use_norm': True}, 'ssm_cell': {'reset_mode': 'init', 'n_blocks': 8, 'C_init': 'trunc_standard_normal', 'conj_sym': False, 'discretization': 'bilinear', 'clip_eigs': False, 'dt_min': 0.001, 'dt_max': 0.1}, 'ssm_type': 'mimo'}
+2024-07-30 17:44:08,259 INFO    MainThread:28261 [wandb_init.py:init():619] starting backend
+2024-07-30 17:44:08,259 INFO    MainThread:28261 [wandb_init.py:init():623] setting up manager
+2024-07-30 17:44:08,261 INFO    MainThread:28261 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-07-30 17:44:08,262 INFO    MainThread:28261 [wandb_init.py:init():631] backend started and connected
+2024-07-30 17:44:08,266 INFO    MainThread:28261 [wandb_init.py:init():720] updated telemetry
+2024-07-30 17:44:08,269 INFO    MainThread:28261 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-07-30 17:44:08,778 INFO    MainThread:28261 [wandb_run.py:_on_init():2402] communicating current version
+2024-07-30 17:44:08,836 INFO    MainThread:28261 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.17.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-07-30 17:44:08,836 INFO    MainThread:28261 [wandb_init.py:init():804] starting run threads in backend
+2024-07-30 17:44:09,923 INFO    MainThread:28261 [wandb_run.py:_console_start():2380] atexit reg
+2024-07-30 17:44:09,923 INFO    MainThread:28261 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-07-30 17:44:09,924 INFO    MainThread:28261 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-07-30 17:44:09,924 INFO    MainThread:28261 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-07-30 17:44:09,924 INFO    MainThread:28261 [wandb_init.py:init():847] run started, returning control to user process
+2024-07-30 17:44:33,320 WARNING MsgRouterThr:28261 [router.py:message_loop():77] message_loop has been closed

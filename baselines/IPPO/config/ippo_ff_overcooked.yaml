@@ -1,21 +1,13 @@
-# For comparison with r2i
-"LR": 3.5e-4 # used 3.5 in all runs! except for the run where 2.5 is written see slides
-# "LR": 3.5e-4 # siehe presentation, where LR: 3.5 wasnt specified 2.5 waas prob used
-"NUM_ENVS": 48 # final presentation param
-"NUM_STEPS": 256 # final presentation param
+# # For comparison with r2i
 # "LR": 3.5e-4
-# "NUM_ENVS": 128 # final presentation for code not using r2i impl
-# "NUM_STEPS": 512 # final presentation for code not using r2i impl
+# "NUM_ENVS": 48
+# "NUM_STEPS": 256
 # "TOTAL_TIMESTEPS": 7.5e+6
-# "TOTAL_TIMESTEPS": 1.0e+7 # 6.5e6 for final presentation run.. nochmal nachrechnen if doubts..
-"TOTAL_TIMESTEPS": 7.5e+6
 
-
-# "LR": 3.5e-4
-# "NUM_ENVS": 128
-# "NUM_STEPS": 512
-# # bei num_envs: 70, num_steps 440 waren (relativ) gute ergebnisse..
-# "TOTAL_TIMESTEPS": 7.0e+7
+"LR": 3.5e-4
+"NUM_ENVS": 128
+"NUM_STEPS": 512
+"TOTAL_TIMESTEPS": 7.0e+7
 "UPDATE_EPOCHS": 4
 "NUM_MINIBATCHES": 4
 "GAMMA": 0.99
@@ -26,8 +18,8 @@
 "MAX_GRAD_NORM": 0.5
 "ACTIVATION": "tanh"
 "ENV_NAME": "overcooked"
-# "ENV_KWARGS": 
-#   "layout" : "cramped_room"
+"SR": "yes"
+
 "LAYOUTS": ["cramped_room", "asymm_advantages", "coord_ring", "forced_coord", "counter_circuit"]
 # "LAYOUTS": ["coord_ring"]
 "ANNEAL_LR": True

@@ -1,0 +1,29 @@
+2024-07-30 17:29:57,137 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Current SDK version is 0.17.4
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Configure stats pid to 26638
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Loading settings from /home/thich1998/.config/wandb/settings
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Loading settings from /home/thich1998/Workspace/JaxMAPPO/wandb/settings
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'baselines/MAPPO/sr_mappo_overcooked.py', 'program_abspath': '/home/thich1998/Workspace/JaxMAPPO/baselines/MAPPO/sr_mappo_overcooked.py', 'program': '/home/thich1998/Workspace/JaxMAPPO/baselines/MAPPO/sr_mappo_overcooked.py'}
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_init.py:_log_setup():529] Logging user logs to /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_172957-ees79125/logs/debug.log
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_init.py:_log_setup():530] Logging internal logs to /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_172957-ees79125/logs/debug-internal.log
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_init.py:init():569] calling init triggers
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_init.py:init():576] wandb.init called with sweep_config: {}
+config: {'LR': 0.00035, 'NUM_ENVS': 128, 'NUM_STEPS': 512, 'TOTAL_TIMESTEPS': 70000000.0, 'UPDATE_EPOCHS': 4, 'NUM_MINIBATCHES': 4, 'GAMMA': 0.99, 'GAE_LAMBDA': 0.95, 'CLIP_EPS': 0.2, 'SCALE_CLIP_EPS': False, 'ENT_COEF': 0.01, 'VF_COEF': 0.5, 'MAX_GRAD_NORM': 0.5, 'ACTIVATION': 'tanh', 'ENV_NAME': 'overcooked', 'SR': 'no', 'LAYOUTS': ['cramped_room', 'asymm_advantages', 'coord_ring', 'forced_coord', 'counter_circuit'], 'ANNEAL_LR': True, 'SEED': 0, 'NUM_SEEDS': 3, 'WANDB_MODE': 'online', 'ENTITY': 'thichqwerty', 'PROJECT': 'r2i_mappo_overcooked'}
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_init.py:init():619] starting backend
+2024-07-30 17:29:57,138 INFO    MainThread:26638 [wandb_init.py:init():623] setting up manager
+2024-07-30 17:29:57,140 INFO    MainThread:26638 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-07-30 17:29:57,141 INFO    MainThread:26638 [wandb_init.py:init():631] backend started and connected
+2024-07-30 17:29:57,145 INFO    MainThread:26638 [wandb_init.py:init():720] updated telemetry
+2024-07-30 17:29:57,147 INFO    MainThread:26638 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-07-30 17:29:57,653 INFO    MainThread:26638 [wandb_run.py:_on_init():2402] communicating current version
+2024-07-30 17:29:57,704 INFO    MainThread:26638 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.17.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-07-30 17:29:57,705 INFO    MainThread:26638 [wandb_init.py:init():804] starting run threads in backend
+2024-07-30 17:29:58,793 INFO    MainThread:26638 [wandb_run.py:_console_start():2380] atexit reg
+2024-07-30 17:29:58,793 INFO    MainThread:26638 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-07-30 17:29:58,793 INFO    MainThread:26638 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-07-30 17:29:58,793 INFO    MainThread:26638 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-07-30 17:29:58,793 INFO    MainThread:26638 [wandb_init.py:init():847] run started, returning control to user process
+2024-07-30 17:37:14,058 WARNING MsgRouterThr:26638 [router.py:message_loop():77] message_loop has been closed

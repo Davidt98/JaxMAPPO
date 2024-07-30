@@ -1,0 +1,25 @@
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/flax/core/lift.py:137: RuntimeWarning: kwargs are not supported in vmap, so "training" is(are) ignored
+  warnings.warn(msg.format(name, ', '.join(kwargs.keys())), RuntimeWarning)
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/numpy/array_methods.py:733: UserWarning: Explicitly requested dtype <class 'jax.numpy.int64'> requested in astype is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/google/jax#current-gotchas for more.
+  return getattr(self.aval, name).fun(self, *args, **kwargs)
+> /home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py(104)__call__()
+-> if mode == 'init':
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 645, in main
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 266, in train
+    world_size = env.observation_space().shape
+                           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 104, in __call__
+    embed = jnp.zeros((embed.shape[0], embed.shape[0]))
+    ^^^^
+  File "/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/bdb.py", line 90, in trace_dispatch
+    return self.dispatch_line(frame)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/bdb.py", line 115, in dispatch_line
+    if self.quitting: raise BdbQuit
+                      ^^^^^^^^^^^^^
+bdb.BdbQuit
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

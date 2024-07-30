@@ -1,0 +1,606 @@
+2024-07-30 17:45:16,562 INFO    StreamThr :29064 [internal.py:wandb_internal():85] W&B internal server running at pid: 29064, started at: 2024-07-30 17:45:16.562322
+2024-07-30 17:45:16,564 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status
+2024-07-30 17:45:16,566 INFO    WriterThread:29064 [datastore.py:open_for_write():87] open: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/run-jyf20t1s.wandb
+2024-07-30 17:45:16,566 DEBUG   SenderThread:29064 [sender.py:send():379] send: header
+2024-07-30 17:45:16,569 DEBUG   SenderThread:29064 [sender.py:send():379] send: run
+2024-07-30 17:45:17,074 INFO    SenderThread:29064 [dir_watcher.py:__init__():211] watching files in: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files
+2024-07-30 17:45:17,074 INFO    SenderThread:29064 [sender.py:_start_run_threads():1188] run started: jyf20t1s with start time 1722354316.562083
+2024-07-30 17:45:17,078 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: check_version
+2024-07-30 17:45:17,079 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: check_version
+2024-07-30 17:45:17,130 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: run_start
+2024-07-30 17:45:17,139 DEBUG   HandlerThread:29064 [system_info.py:__init__():26] System info init
+2024-07-30 17:45:17,140 DEBUG   HandlerThread:29064 [system_info.py:__init__():41] System info init done
+2024-07-30 17:45:17,140 INFO    HandlerThread:29064 [system_monitor.py:start():194] Starting system monitor
+2024-07-30 17:45:17,140 INFO    SystemMonitor:29064 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-07-30 17:45:17,140 INFO    HandlerThread:29064 [system_monitor.py:probe():214] Collecting system info
+2024-07-30 17:45:17,140 INFO    SystemMonitor:29064 [interfaces.py:start():188] Started cpu monitoring
+2024-07-30 17:45:17,141 INFO    SystemMonitor:29064 [interfaces.py:start():188] Started disk monitoring
+2024-07-30 17:45:17,141 INFO    SystemMonitor:29064 [interfaces.py:start():188] Started gpu monitoring
+2024-07-30 17:45:17,142 INFO    SystemMonitor:29064 [interfaces.py:start():188] Started memory monitoring
+2024-07-30 17:45:17,142 INFO    SystemMonitor:29064 [interfaces.py:start():188] Started network monitoring
+2024-07-30 17:45:17,147 DEBUG   HandlerThread:29064 [system_info.py:probe():152] Probing system
+2024-07-30 17:45:17,148 DEBUG   HandlerThread:29064 [system_info.py:_probe_git():137] Probing git
+2024-07-30 17:45:17,151 DEBUG   HandlerThread:29064 [system_info.py:_probe_git():145] Probing git done
+2024-07-30 17:45:17,151 DEBUG   HandlerThread:29064 [system_info.py:probe():200] Probing system done
+2024-07-30 17:45:17,151 DEBUG   HandlerThread:29064 [system_monitor.py:probe():223] {'os': 'Linux-6.5.0-44-generic-x86_64-with-glibc2.35', 'python': '3.12.3', 'heartbeatAt': '2024-07-30T15:45:17.147480', 'startedAt': '2024-07-30T15:45:16.557371', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '-m baselines.Recall2Imagine.r2i_mappo_sr_overcooked', 'codePathLocal': None, 'git': {'remote': 'https://github.com/Davidt98/JaxMAPPO.git', 'commit': '7a1506e4a574b9d76eb95407752d428afc0dcf62'}, 'email': 'thichqwerty@hotmail.com', 'root': '/home/thich1998/Workspace/JaxMAPPO', 'host': 'DavidUbuntu', 'username': 'thich1998', 'executable': '/home/thich1998/miniconda3/envs/r2i_mappo/bin/python', 'cpu_count': 14, 'cpu_count_logical': 20, 'cpu_freq': {'current': 1600.1284, 'min': 400.0, 'max': 4180.0}, 'cpu_freq_per_core': [{'current': 1400.217, 'min': 400.0, 'max': 4600.0}, {'current': 400.0, 'min': 400.0, 'max': 4600.0}, {'current': 3554.954, 'min': 400.0, 'max': 4600.0}, {'current': 400.0, 'min': 400.0, 'max': 4600.0}, {'current': 3680.647, 'min': 400.0, 'max': 4700.0}, {'current': 400.0, 'min': 400.0, 'max': 4700.0}, {'current': 3475.269, 'min': 400.0, 'max': 4700.0}, {'current': 400.0, 'min': 400.0, 'max': 4700.0}, {'current': 3338.326, 'min': 400.0, 'max': 4600.0}, {'current': 3423.199, 'min': 400.0, 'max': 4600.0}, {'current': 3362.315, 'min': 400.0, 'max': 4600.0}, {'current': 400.0, 'min': 400.0, 'max': 4600.0}, {'current': 2448.414, 'min': 400.0, 'max': 3500.0}, {'current': 2586.091, 'min': 400.0, 'max': 3500.0}, {'current': 2516.452, 'min': 400.0, 'max': 3500.0}, {'current': 2533.102, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}, {'current': 400.0, 'min': 400.0, 'max': 3500.0}], 'disk': {'/': {'total': 793.2809143066406, 'used': 103.42190933227539}}, 'gpu': 'NVIDIA GeForce RTX 3070 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3070 Laptop GPU', 'memory_total': 8589934592}], 'memory': {'total': 31.06570053100586}}
+2024-07-30 17:45:17,151 INFO    HandlerThread:29064 [system_monitor.py:probe():224] Finished collecting system info
+2024-07-30 17:45:17,151 INFO    HandlerThread:29064 [system_monitor.py:probe():227] Publishing system info
+2024-07-30 17:45:17,152 DEBUG   HandlerThread:29064 [system_info.py:_save_conda():209] Saving list of conda packages installed into the current environment
+2024-07-30 17:45:18,075 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/conda-environment.yaml
+2024-07-30 17:45:18,219 DEBUG   HandlerThread:29064 [system_info.py:_save_conda():224] Saving conda packages done
+2024-07-30 17:45:18,220 INFO    HandlerThread:29064 [system_monitor.py:probe():229] Finished publishing system info
+2024-07-30 17:45:18,226 DEBUG   SenderThread:29064 [sender.py:send():379] send: files
+2024-07-30 17:45:18,226 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-metadata.json with policy now
+2024-07-30 17:45:18,269 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: python_packages
+2024-07-30 17:45:18,269 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:45:18,269 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: python_packages
+2024-07-30 17:45:18,270 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:45:18,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:18,676 DEBUG   SenderThread:29064 [sender.py:send():379] send: telemetry
+2024-07-30 17:45:19,009 INFO    wandb-upload_0:29064 [upload_job.py:push():130] Uploaded file /tmp/tmp9blgnwb4wandb/3hjy57kt-wandb-metadata.json
+2024-07-30 17:45:19,075 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/conda-environment.yaml
+2024-07-30 17:45:19,075 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/output.log
+2024-07-30 17:45:19,075 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/requirements.txt
+2024-07-30 17:45:19,075 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-metadata.json
+2024-07-30 17:45:19,304 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:20,326 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:21,075 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/output.log
+2024-07-30 17:45:21,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:21,627 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:22,327 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:23,327 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:24,327 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:25,327 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:26,327 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:27,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:27,328 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:28,328 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:29,328 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:30,328 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:31,328 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:32,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:32,328 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:32,934 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:32,935 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:32,935 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:32,936 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:33,078 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_created():271] file/dir created: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:33,269 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:45:33,270 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:45:33,329 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:34,329 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:35,329 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:36,329 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:36,679 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:36,680 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:36,680 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:36,681 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:37,079 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:37,329 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:37,682 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:38,329 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:39,330 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:40,330 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:40,350 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:40,350 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:40,351 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:40,351 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:41,080 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:41,330 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:42,330 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:43,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:43,330 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:43,943 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:43,944 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:43,944 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:43,945 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:44,081 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:44,331 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:45,331 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:46,331 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:47,331 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:47,535 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:47,535 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:47,535 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:47,537 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:48,082 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:48,270 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:45:48,270 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:45:48,331 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:48,503 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:49,083 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/config.yaml
+2024-07-30 17:45:49,331 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:50,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:51,227 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:51,227 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:51,228 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:51,228 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:51,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:52,083 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:52,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:53,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:54,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:45:54,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:54,924 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:54,925 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:54,925 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:54,925 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:55,084 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:55,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:56,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:57,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:58,332 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:58,526 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:45:58,527 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:45:58,527 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:45:58,527 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:45:59,085 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:45:59,333 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:45:59,528 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:00,333 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:01,333 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:02,157 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:02,157 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:02,158 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:02,158 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:02,333 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:03,086 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:03,270 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:46:03,270 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:46:03,333 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:04,333 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:04,555 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:05,334 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:05,762 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:05,763 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:05,763 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:05,764 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:06,087 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:06,334 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:07,334 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:08,334 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:09,334 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:09,376 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:09,376 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:09,376 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:09,377 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:10,088 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:10,334 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:10,378 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:11,335 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:12,335 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:12,981 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:12,982 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:12,982 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:12,983 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:13,089 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:13,335 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:14,336 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:15,336 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:16,272 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:16,336 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:16,689 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:16,689 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:16,689 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:16,690 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:17,090 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:17,142 DEBUG   SystemMonitor:29064 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-07-30 17:46:17,143 DEBUG   SenderThread:29064 [sender.py:send():379] send: stats
+2024-07-30 17:46:17,336 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:18,270 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:46:18,270 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:46:18,336 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:19,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:20,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:20,406 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:20,407 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:20,407 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:20,407 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:21,091 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:21,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:21,408 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:22,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:23,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:24,027 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:24,027 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:24,028 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:24,028 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:24,092 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:24,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:25,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:26,337 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:27,029 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:27,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:27,846 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:27,850 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:27,850 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:27,850 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:28,094 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:28,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:29,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:30,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:31,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:31,596 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:31,597 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:31,597 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:31,597 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:32,095 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:32,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:32,598 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:33,270 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:46:33,271 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:46:33,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:34,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:35,265 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:35,265 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:35,265 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:35,266 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:35,338 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:36,096 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:36,339 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:37,339 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:38,267 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:38,339 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:38,996 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:38,996 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:38,997 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:38,997 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:39,097 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:39,339 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:40,340 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:41,340 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:42,340 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:42,700 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:42,701 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:42,701 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:42,701 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:43,098 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:43,273 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:43,340 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:44,340 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:45,340 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:46,341 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:46,343 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:46,351 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:46,351 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:46,352 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:47,099 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:47,144 DEBUG   SenderThread:29064 [sender.py:send():379] send: stats
+2024-07-30 17:46:47,341 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:48,270 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:46:48,271 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:46:48,341 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:48,507 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:49,341 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:49,988 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:49,989 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:49,989 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:49,990 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:50,100 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:50,342 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:51,342 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:52,342 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:53,342 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:53,624 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:53,625 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:53,625 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:53,626 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:53,626 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:54,101 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:54,342 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:55,343 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:56,343 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:57,343 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:57,362 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:46:57,362 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:46:57,362 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:46:57,363 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:46:58,102 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:46:58,343 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:46:59,273 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:46:59,343 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:00,344 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:01,094 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:01,095 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:01,095 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:01,095 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:01,103 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:01,344 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:02,344 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:03,270 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:47:03,271 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:47:03,344 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:04,344 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:04,560 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:04,851 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:04,851 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:04,851 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:04,851 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:05,104 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:05,345 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:06,345 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:07,345 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:08,345 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:08,500 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:08,501 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:08,501 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:08,502 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:09,105 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:09,345 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:10,346 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:10,502 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:11,346 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:12,135 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:12,135 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:12,135 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:12,135 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:12,346 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:13,106 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:13,346 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:14,346 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:15,347 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:15,955 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:15,956 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:15,956 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:15,956 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:15,957 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:16,107 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:16,347 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:17,144 DEBUG   SenderThread:29064 [sender.py:send():379] send: stats
+2024-07-30 17:47:17,347 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:18,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:47:18,271 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:47:18,347 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:19,347 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:19,629 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:19,629 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:19,630 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:19,631 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:20,108 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:20,347 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:21,348 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:21,632 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:22,348 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:23,305 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:23,306 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:23,306 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:23,306 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:23,366 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:24,109 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:24,366 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:25,366 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:26,366 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:27,051 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:27,052 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:27,052 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:27,052 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:27,053 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:27,110 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:27,367 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:28,367 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:29,367 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:30,367 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:30,716 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:30,717 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:30,717 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:30,717 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:31,111 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:31,367 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:32,368 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:32,718 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:33,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:47:33,271 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:47:33,368 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:34,368 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:34,372 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:34,373 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:34,373 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:34,373 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:35,112 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:35,368 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:36,368 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:37,369 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:38,022 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:38,022 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:38,022 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:38,022 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:38,023 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:38,113 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:38,369 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:39,369 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:40,369 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:41,369 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:41,681 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:41,682 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:41,682 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:41,682 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:42,115 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:42,370 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:43,275 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:43,370 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:44,370 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:45,370 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:45,431 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:45,431 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:45,432 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:45,432 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:46,116 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:46,370 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:47,145 DEBUG   SenderThread:29064 [sender.py:send():379] send: stats
+2024-07-30 17:47:47,371 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:48,271 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: stop_status
+2024-07-30 17:47:48,271 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: stop_status
+2024-07-30 17:47:48,371 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:48,513 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:49,099 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:49,100 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:49,100 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:49,100 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:49,117 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:49,371 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:50,371 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:51,371 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:52,372 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:52,857 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:52,858 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:52,858 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:52,859 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:53,119 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:53,372 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:54,275 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:54,372 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:55,372 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:56,373 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:56,517 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: partial_history
+2024-07-30 17:47:56,517 DEBUG   SenderThread:29064 [sender.py:send():379] send: history
+2024-07-30 17:47:56,517 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: summary_record
+2024-07-30 17:47:56,518 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:47:57,120 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:47:57,373 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:58,373 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:47:59,275 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:47:59,373 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:48:00,375 DEBUG   SenderThread:29064 [sender.py:send():379] send: exit
+2024-07-30 17:48:00,375 INFO    SenderThread:29064 [sender.py:send_exit():586] handling exit code: 1
+2024-07-30 17:48:00,375 INFO    SenderThread:29064 [sender.py:send_exit():588] handling runtime: 163
+2024-07-30 17:48:00,375 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:48:00,375 INFO    SenderThread:29064 [sender.py:send_exit():594] send defer
+2024-07-30 17:48:00,375 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,375 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 0
+2024-07-30 17:48:00,376 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,376 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 0
+2024-07-30 17:48:00,376 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 1
+2024-07-30 17:48:00,376 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,376 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 1
+2024-07-30 17:48:00,376 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,376 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 1
+2024-07-30 17:48:00,376 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 2
+2024-07-30 17:48:00,376 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,376 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 2
+2024-07-30 17:48:00,376 INFO    HandlerThread:29064 [system_monitor.py:finish():203] Stopping system monitor
+2024-07-30 17:48:00,376 DEBUG   SystemMonitor:29064 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-07-30 17:48:00,377 DEBUG   SystemMonitor:29064 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-07-30 17:48:00,378 INFO    HandlerThread:29064 [interfaces.py:finish():200] Joined cpu monitor
+2024-07-30 17:48:00,378 INFO    HandlerThread:29064 [interfaces.py:finish():200] Joined disk monitor
+2024-07-30 17:48:00,403 INFO    HandlerThread:29064 [interfaces.py:finish():200] Joined gpu monitor
+2024-07-30 17:48:00,403 INFO    HandlerThread:29064 [interfaces.py:finish():200] Joined memory monitor
+2024-07-30 17:48:00,403 INFO    HandlerThread:29064 [interfaces.py:finish():200] Joined network monitor
+2024-07-30 17:48:00,403 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,403 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 2
+2024-07-30 17:48:00,403 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 3
+2024-07-30 17:48:00,403 DEBUG   SenderThread:29064 [sender.py:send():379] send: stats
+2024-07-30 17:48:00,403 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,403 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 3
+2024-07-30 17:48:00,404 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,404 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 3
+2024-07-30 17:48:00,404 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 4
+2024-07-30 17:48:00,404 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,404 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 4
+2024-07-30 17:48:00,404 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,404 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 4
+2024-07-30 17:48:00,404 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 5
+2024-07-30 17:48:00,404 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,404 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 5
+2024-07-30 17:48:00,404 DEBUG   SenderThread:29064 [sender.py:send():379] send: summary
+2024-07-30 17:48:00,405 INFO    SenderThread:29064 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-07-30 17:48:00,405 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,405 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 5
+2024-07-30 17:48:00,405 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 6
+2024-07-30 17:48:00,405 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,405 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 6
+2024-07-30 17:48:00,405 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,405 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 6
+2024-07-30 17:48:00,405 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 7
+2024-07-30 17:48:00,405 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: status_report
+2024-07-30 17:48:00,405 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:00,405 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 7
+2024-07-30 17:48:00,405 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:00,405 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 7
+2024-07-30 17:48:01,122 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:48:01,123 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/output.log
+2024-07-30 17:48:01,357 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:02,704 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 8
+2024-07-30 17:48:02,704 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:02,704 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:02,704 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 8
+2024-07-30 17:48:02,705 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:02,705 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 8
+2024-07-30 17:48:02,705 INFO    SenderThread:29064 [job_builder.py:build():440] Attempting to build job artifact
+2024-07-30 17:48:02,705 INFO    SenderThread:29064 [job_builder.py:_get_source_type():569] is repo sourced job
+2024-07-30 17:48:02,705 WARNING SenderThread:29064 [job_builder.py:_log_if_verbose():274] No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+2024-07-30 17:48:02,705 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 9
+2024-07-30 17:48:02,706 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:02,706 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 9
+2024-07-30 17:48:02,706 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:02,706 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 9
+2024-07-30 17:48:02,706 INFO    SenderThread:29064 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-07-30 17:48:03,123 INFO    Thread-12 :29064 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/output.log
+2024-07-30 17:48:03,123 INFO    SenderThread:29064 [dir_watcher.py:finish():388] scan: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files
+2024-07-30 17:48:03,123 INFO    SenderThread:29064 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/conda-environment.yaml conda-environment.yaml
+2024-07-30 17:48:03,123 INFO    SenderThread:29064 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/config.yaml config.yaml
+2024-07-30 17:48:03,123 INFO    SenderThread:29064 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-metadata.json wandb-metadata.json
+2024-07-30 17:48:03,124 INFO    SenderThread:29064 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/output.log output.log
+2024-07-30 17:48:03,124 INFO    SenderThread:29064 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/requirements.txt requirements.txt
+2024-07-30 17:48:03,124 INFO    SenderThread:29064 [dir_watcher.py:finish():402] scan save: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json wandb-summary.json
+2024-07-30 17:48:03,124 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 10
+2024-07-30 17:48:03,124 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:03,124 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 10
+2024-07-30 17:48:03,124 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:03,124 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 10
+2024-07-30 17:48:03,124 INFO    SenderThread:29064 [file_pusher.py:finish():169] shutting down file pusher
+2024-07-30 17:48:03,359 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:03,360 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:03,519 INFO    wandb-upload_0:29064 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/conda-environment.yaml
+2024-07-30 17:48:03,546 INFO    wandb-upload_4:29064 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/wandb-summary.json
+2024-07-30 17:48:03,554 INFO    wandb-upload_3:29064 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/requirements.txt
+2024-07-30 17:48:03,676 INFO    wandb-upload_1:29064 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/config.yaml
+2024-07-30 17:48:04,359 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:04,361 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:05,361 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:05,362 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:06,024 INFO    wandb-upload_2:29064 [upload_job.py:push():130] Uploaded file /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/files/output.log
+2024-07-30 17:48:06,225 INFO    Thread-11 (_thread_body):29064 [sender.py:transition_state():614] send defer: 11
+2024-07-30 17:48:06,226 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:06,226 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 11
+2024-07-30 17:48:06,227 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:06,227 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 11
+2024-07-30 17:48:06,227 INFO    SenderThread:29064 [file_pusher.py:join():175] waiting for file pusher
+2024-07-30 17:48:06,227 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 12
+2024-07-30 17:48:06,228 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:06,228 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 12
+2024-07-30 17:48:06,228 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:06,228 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 12
+2024-07-30 17:48:06,228 INFO    SenderThread:29064 [file_stream.py:finish():601] file stream finish called
+2024-07-30 17:48:06,362 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:06,433 INFO    SenderThread:29064 [file_stream.py:finish():605] file stream finish is done
+2024-07-30 17:48:06,434 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 13
+2024-07-30 17:48:06,434 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:06,434 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:06,435 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 13
+2024-07-30 17:48:06,435 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:06,435 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 13
+2024-07-30 17:48:06,435 INFO    SenderThread:29064 [sender.py:transition_state():614] send defer: 14
+2024-07-30 17:48:06,436 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: defer
+2024-07-30 17:48:06,436 INFO    HandlerThread:29064 [handler.py:handle_request_defer():184] handle defer: 14
+2024-07-30 17:48:06,436 DEBUG   SenderThread:29064 [sender.py:send():379] send: final
+2024-07-30 17:48:06,437 DEBUG   SenderThread:29064 [sender.py:send():379] send: footer
+2024-07-30 17:48:06,437 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: defer
+2024-07-30 17:48:06,437 INFO    SenderThread:29064 [sender.py:send_request_defer():610] handle sender defer: 14
+2024-07-30 17:48:06,437 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:06,438 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:06,438 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: server_info
+2024-07-30 17:48:06,439 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: server_info
+2024-07-30 17:48:06,440 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: poll_exit
+2024-07-30 17:48:06,441 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: get_summary
+2024-07-30 17:48:06,441 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: sampled_history
+2024-07-30 17:48:06,442 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: internal_messages
+2024-07-30 17:48:06,639 DEBUG   SenderThread:29064 [sender.py:send_request():406] send_request: poll_exit
+2024-07-30 17:48:06,641 INFO    MainThread:29064 [wandb_run.py:_footer_history_summary_info():3991] rendering history
+2024-07-30 17:48:06,643 INFO    MainThread:29064 [wandb_run.py:_footer_history_summary_info():4023] rendering summary
+2024-07-30 17:48:06,643 INFO    MainThread:29064 [wandb_run.py:_footer_sync_info():3950] logging synced files
+2024-07-30 17:48:06,644 DEBUG   HandlerThread:29064 [handler.py:handle_request():158] handle_request: shutdown
+2024-07-30 17:48:06,644 INFO    HandlerThread:29064 [handler.py:finish():882] shutting down handler
+2024-07-30 17:48:07,441 INFO    WriterThread:29064 [datastore.py:close():296] close: /home/thich1998/Workspace/JaxMAPPO/wandb/run-20240730_174516-jyf20t1s/run-jyf20t1s.wandb
+2024-07-30 17:48:07,640 INFO    SenderThread:29064 [sender.py:finish():1608] shutting down sender
+2024-07-30 17:48:07,641 INFO    SenderThread:29064 [file_pusher.py:finish():169] shutting down file pusher
+2024-07-30 17:48:07,641 INFO    SenderThread:29064 [file_pusher.py:join():175] waiting for file pusher

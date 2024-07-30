@@ -1,0 +1,1 @@
+{"total_rewards": 285.625, "shaped_coefficient": 0.6891721487045288, "env_step": 21757952, "scaled_shaped_reward": 0.0, "scaled_reward": 0.0, "base_reward": 285.625, "actor_loss": -0.03273680806159973, "_timestamp": 1722354645.8029273, "_runtime": 150.24293327331543, "_step": 332, "_wandb": {"runtime": 150}}

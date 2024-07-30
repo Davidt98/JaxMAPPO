@@ -1,0 +1,25 @@
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/flax/core/lift.py:137: RuntimeWarning: kwargs are not supported in vmap, so "training" is(are) ignored
+  warnings.warn(msg.format(name, ', '.join(kwargs.keys())), RuntimeWarning)
+/home/thich1998/miniconda3/envs/r2i_mappo/lib/python3.12/site-packages/jax/_src/numpy/array_methods.py:733: UserWarning: Explicitly requested dtype <class 'jax.numpy.int64'> requested in astype is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/google/jax#current-gotchas for more.
+  return getattr(self.aval, name).fun(self, *args, **kwargs)
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 644, in main
+    out = train_jit(rng)
+          ^^^^^^^^^^^^^^
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 611, in train
+    runner_state, metric = jax.lax.scan(
+                           ^^^^^^^^^^^^^
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 411, in _update_step
+    advantages, targets = _calculate_gae(traj_batch, last_val, shapedRewardState.shaped_reward_coeff)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 402, in _calculate_gae
+    _, advantages = jax.lax.scan(
+                    ^^^^^^^^^^^^^
+  File "/home/thich1998/Workspace/JaxMAPPO/baselines/Recall2Imagine/r2i_mappo_sr_overcooked.py", line 385, in _get_advantages
+    if config["SR"] == "yes":
+       ~~~~~~^^^^^^
+KeyError: 'SR'
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

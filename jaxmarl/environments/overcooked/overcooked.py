@@ -608,13 +608,12 @@ class Overcooked(MultiAgentEnv):
         num_pots_ready = num_pots - num_pots_cooking - num_pots_not_started
         pot_left_over_for_plate = (num_pots_cooking + num_pots_ready - 1 * (other_inventory == OBJECT_TO_INDEX["dish"])) > 0
         # As in orignal work: adding onion 3, getting a bowl while cooking 5, pickung up a soup 5
-        shaped_reward_c1 = (new_object_in_inv == OBJECT_TO_INDEX["empty"]) * (object_in_inv == OBJECT_TO_INDEX["onion"]) * case_1 * 3.0 # NOTE: for counter_circuit try case one -> 10 reward and lower weight on ce_loss
+        shaped_reward_c1 = (new_object_in_inv == OBJECT_TO_INDEX["empty"]) * (object_in_inv == OBJECT_TO_INDEX["onion"]) * case_1 * 3.0
         shaped_reward_c2 = (new_object_in_inv == OBJECT_TO_INDEX["dish"]) * (object_in_inv == OBJECT_TO_INDEX["plate"]) * case_2 * 5.0
         shaped_reward_c3 = (new_object_in_inv == OBJECT_TO_INDEX["plate"]) * (object_on_table == OBJECT_TO_INDEX["plate_pile"]) * \
             successful_pickup * no_plate_on_counter * pot_left_over_for_plate * 5.0
 
-        # shaped_reward = shaped_reward_c1 + shaped_reward_c2 + shaped_reward_c3 # TODO: Print sr and analyze 0-3
-        shaped_reward = jnp.zeros([]) # For comparison wihtout SR
+        shaped_reward = shaped_reward_c1 + shaped_reward_c2 + shaped_reward_c3
 
         return maze_map, inventory, reward, shaped_reward
 

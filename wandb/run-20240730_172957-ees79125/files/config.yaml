@@ -1,0 +1,110 @@
+wandb_version: 1
+
+LR:
+  desc: null
+  value: 0.00035
+NUM_ENVS:
+  desc: null
+  value: 128
+NUM_STEPS:
+  desc: null
+  value: 512
+TOTAL_TIMESTEPS:
+  desc: null
+  value: 70000000.0
+UPDATE_EPOCHS:
+  desc: null
+  value: 4
+NUM_MINIBATCHES:
+  desc: null
+  value: 4
+GAMMA:
+  desc: null
+  value: 0.99
+GAE_LAMBDA:
+  desc: null
+  value: 0.95
+CLIP_EPS:
+  desc: null
+  value: 0.2
+SCALE_CLIP_EPS:
+  desc: null
+  value: false
+ENT_COEF:
+  desc: null
+  value: 0.01
+VF_COEF:
+  desc: null
+  value: 0.5
+MAX_GRAD_NORM:
+  desc: null
+  value: 0.5
+ACTIVATION:
+  desc: null
+  value: tanh
+ENV_NAME:
+  desc: null
+  value: overcooked
+SR:
+  desc: null
+  value: 'no'
+LAYOUTS:
+  desc: null
+  value:
+  - cramped_room
+  - asymm_advantages
+  - coord_ring
+  - forced_coord
+  - counter_circuit
+ANNEAL_LR:
+  desc: null
+  value: true
+SEED:
+  desc: null
+  value: 0
+NUM_SEEDS:
+  desc: null
+  value: 3
+WANDB_MODE:
+  desc: null
+  value: online
+ENTITY:
+  desc: null
+  value: thichqwerty
+PROJECT:
+  desc: null
+  value: r2i_mappo_overcooked
+_wandb:
+  desc: null
+  value:
+    python_version: 3.12.3
+    cli_version: 0.17.4
+    framework: keras
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1722353397
+    t:
+      1:
+      - 2
+      - 3
+      - 12
+      - 45
+      - 50
+      - 55
+      2:
+      - 2
+      - 3
+      - 12
+      - 45
+      - 50
+      - 55
+      3:
+      - 13
+      - 15
+      - 16
+      - 23
+      4: 3.12.3
+      5: 0.17.4
+      8:
+      - 5
+      13: linux-x86_64

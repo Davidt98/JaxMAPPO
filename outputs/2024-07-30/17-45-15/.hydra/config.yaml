@@ -1,0 +1,62 @@
+LR: 0.00035
+NUM_ENVS: 48
+NUM_STEPS: 256
+TOTAL_TIMESTEPS: 7500000.0
+UPDATE_EPOCHS: 4
+NUM_MINIBATCHES: 4
+GAMMA: 0.99
+GAE_LAMBDA: 0.95
+CLIP_EPS: 0.2
+SCALE_CLIP_EPS: false
+ENT_COEF: 0.01
+VF_COEF: 0.5
+MAX_GRAD_NORM: 0.5
+ACTIVATION: tanh
+ENV_NAME: overcooked
+SR: 'yes'
+LAYOUTS:
+- cramped_room
+- asymm_advantages
+- coord_ring
+- forced_coord
+- counter_circuit
+ANNEAL_LR: true
+SEED: 0
+NUM_SEEDS: 3
+WANDB_MODE: online
+ENTITY: thichqwerty
+PROJECT: r2i_mappo_overcooked
+rssm:
+  deter: 4096
+  units: 1024
+  hidden: 128
+  stoch: 32
+  classes: 32
+  act: silu
+  norm: layer
+  initial: learned
+  unimix: 0.01
+  unroll: true
+  action_clip: 1.0
+  winit: normal
+  fan: avg
+  nonrecurrent_enc: false
+ssm:
+  n_layers: 2
+  prenorm: false
+  mlp: true
+  glu: true
+  dropout: 0.0
+  parallel: true
+  conv: false
+  use_norm: true
+ssm_cell:
+  reset_mode: init
+  n_blocks: 8
+  C_init: trunc_standard_normal
+  conj_sym: false
+  discretization: bilinear
+  clip_eigs: false
+  dt_min: 0.001
+  dt_max: 0.1
+ssm_type: mimo
