@@ -61,6 +61,11 @@ class ActorCritic(nn.Module):
         )(actor_mean)
         pi = distrax.Categorical(logits=actor_mean)
 
+        other_action_logits = nn.Dense(
+            self.action_dim, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
+        )(actor_mean)
+        other_action = distrax.Categorical(logits=other_action_logits)
+
         critic = nn.Dense(
             64, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
         )(x)
@@ -73,7 +78,7 @@ class ActorCritic(nn.Module):
             critic
         )
 
-        return pi, jnp.squeeze(critic, axis=-1)
+        return pi, other_action, jnp.squeeze(critic, axis=-1)
     
 
 class Transition(NamedTuple):
@@ -85,6 +90,7 @@ class Transition(NamedTuple):
     log_prob: jnp.ndarray
     obs: jnp.ndarray
     info: jnp.ndarray
+    other_action_pred: jnp.ndarray
 
 def get_rollout(train_state, config, layout):
     env = jaxmarl.make(config["ENV_NAME"], **layout)
@@ -114,8 +120,8 @@ def get_rollout(train_state, config, layout):
         # breakpoint()
         obs = {k: v.flatten() for k, v in obs.items()} # converts multi-dim obs arrays into 1D arrays suitable for feeding into the NN
         # action distributions pi_0, pi_1
-        pi_0, _ = network.apply(network_params, obs["agent_0"])
-        pi_1, _ = network.apply(network_params, obs["agent_1"])
+        pi_0, noap, _ = network.apply(network_params, obs["agent_0"])
+        pi_1, noap, _ = network.apply(network_params, obs["agent_1"])
 
         # choose one action from action dist with random key
         actions = {"agent_0": pi_0.sample(seed=key_a0), "agent_1": pi_1.sample(seed=key_a1)}
@@ -203,7 +209,7 @@ def make_train(config, layout):
                 # takes the observations of all agents and stacks them into a single tensor
                 # with a shape that matches the expected input shape of the neural network
                 obs_batch = batchify(last_obs, env.agents, config["NUM_ACTORS"])
-                pi, value = network.apply(train_state.params, obs_batch)
+                pi, noap, value = network.apply(train_state.params, obs_batch)
                 action = pi.sample(seed=_rng)
                 log_prob = pi.log_prob(action)
                 # reshapes the batched actions back into individual actions for each agent.
@@ -227,7 +233,8 @@ def make_train(config, layout):
                     info["shaped_reward"], 
                     log_prob,
                     obs_batch,
-                    info
+                    info,
+                    noap
                     
                 )
                 runner_state = (train_state, shapedRewardState, env_state, obsv, rng)
@@ -244,7 +251,7 @@ def make_train(config, layout):
             # PPO: LCLIP(θ)=Et​[min(rt​(θ)A^t​,clip(rt​(θ),1−ϵ,1+ϵ)A^t​)]..
             train_state, shapedRewardState, env_state, last_obs, rng = runner_state
             last_obs_batch = batchify(last_obs, env.agents, config["NUM_ACTORS"])
-            _, last_val = network.apply(train_state.params, last_obs_batch)
+            _, _, last_val = network.apply(train_state.params, last_obs_batch)
 
             def _calculate_gae(traj_batch, last_val, shaped_reward_coeff):
                 def _get_advantages(gae_and_next_value, transition):
@@ -288,9 +295,13 @@ def make_train(config, layout):
                     def _loss_fn(params, traj_batch, gae, targets):
                         # RERUN NETWORK
                         # applies current network params to obs to get policy (action) dist and value estimates
-                        pi, value = network.apply(params, traj_batch.obs)
+                        pi, noap, value = network.apply(params, traj_batch.obs)
                         # computes log probs of the actions taken in the traj under current policy
                         log_prob = pi.log_prob(traj_batch.action)
+
+                        other_action_pred_loss_weight = 9.0e-10
+                        log_softmax_preds = jax.nn.log_softmax(noap.logits)
+                        other_action_prediction_loss = jnp.sum(traj_batch.other_action_pred.logits * log_softmax_preds)
 
                         # CALCULATE VALUE LOSS
                         # Computes the value loss, which helps to update the value function
@@ -317,10 +328,11 @@ def make_train(config, layout):
                         )
                         loss_actor = -jnp.minimum(loss_actor1, loss_actor2)
                         loss_actor = loss_actor.mean()
+                        total_loss_actor = loss_actor + other_action_pred_loss_weight * other_action_prediction_loss
                         entropy = pi.entropy().mean()
 
                         total_loss = (
-                            loss_actor
+                            total_loss_actor
                             + config["VF_COEF"] * value_loss
                             - config["ENT_COEF"] * entropy
                         )
@@ -437,7 +449,7 @@ def main(config):
 
         # WandB
         wandb.init(
-            name = f"low_{layout_name}_ippo",
+            name = f"noap_{layout_name}_ippo",
             group="ippo",
             tags=[f"vanilla_{layout_name}", "no_sr", "final_report", "no_other_action_prediction", "vanilla"],
             entity=config["ENTITY"],

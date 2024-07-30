@@ -1,23 +1,37 @@
-"LR": 2.5e-4 # learning rate, see calculation of gradient of the loss function
-"NUM_ENVS": 128 # number of parallel env run (simultaneously) 16
-"NUM_STEPS": 512 # number of steps before model is updated
-"TOTAL_TIMESTEPS": 1.0e+7 # 5.0e+6 # total number of steps (actions) taken during training
-"UPDATE_EPOCHS": 4 # model is updated x times per batch
+# For comparison with r2i
+"LR": 3.5e-4 # used 3.5 in all runs! except for the run where 2.5 is written see slides
+# "LR": 3.5e-4 # siehe presentation, where LR: 3.5 wasnt specified 2.5 waas prob used
+"NUM_ENVS": 48 # final presentation param
+"NUM_STEPS": 256 # final presentation param
+# "LR": 3.5e-4
+# "NUM_ENVS": 128 # final presentation for code not using r2i impl
+# "NUM_STEPS": 512 # final presentation for code not using r2i impl
+# "TOTAL_TIMESTEPS": 7.5e+6
+# "TOTAL_TIMESTEPS": 1.0e+7 # 6.5e6 for final presentation run.. nochmal nachrechnen if doubts..
+"TOTAL_TIMESTEPS": 7.5e+6
+
+# For comparison with IPPO vanilla
+# "LR": 3.5e-4
+# "NUM_ENVS": 128
+# "NUM_STEPS": 512
+# "TOTAL_TIMESTEPS": 7.0e+7
+"UPDATE_EPOCHS": 4
 "NUM_MINIBATCHES": 4
-"GAMMA": 0.99 # discount factor (determines importance for future rewards)
-"GAE_LAMBDA": 0.95 # generalized advantage estimation (balances bias-variance trade-off)
-"CLIP_EPS": 0.2 # prevents large policy updates (by clipping ratio between old and new policy)
+"GAMMA": 0.99 
+"GAE_LAMBDA": 0.95 
+"CLIP_EPS": 0.2 
 "SCALE_CLIP_EPS": False
-"ENT_COEF": 0.01 # encourages exploration
-"VF_COEF": 0.5 # value funciton coefficient (balances between policy improvement and value estimation)
-"MAX_GRAD_NORM": 0.5 # specifies maximum gradient norm allowed during training
+"ENT_COEF": 0.01
+"VF_COEF": 0.5 
+"MAX_GRAD_NORM": 0.5
 "ACTIVATION": "tanh"
 "ENV_NAME": "overcooked"
 # "ENV_KWARGS": 
 #   "layout" : "cramped_room"
-# "LAYOUTS": ["cramped_room", "asymm_advantages", "coord_ring", "forced_coord", "counter_circuit"]
-"LAYOUTS": ["asymm_advantages"]
-"ANNEAL_LR": True # determines whether or not to anneal (gradually decrease) the learning rate during training
+"LAYOUTS": ["cramped_room", "asymm_advantages", "coord_ring", "forced_coord", "counter_circuit"]
+# "LAYOUTS": ["coord_ring", "forced_coord", "counter_circuit"]
+# "LAYOUTS": ["coord_ring"]
+"ANNEAL_LR": True 
 "SEED": 0
 "NUM_SEEDS": 3
 
@@ -28,3 +42,5 @@
 "WANDB_MODE": "online"
 "ENTITY": "thichqwerty"
 "PROJECT": "r2i_mappo_overcooked"
+# TODO: Remove comments
+# r2i

@@ -46,7 +46,7 @@ class OvercookedWorldStateWrapper(JaxMARLWrapper):
     def world_state(self, obs, env_state):
         world_state = jnp.concatenate([(obs[agent]) for agent in self._env.agents], axis=-1)
         world_state_inverse = jnp.concatenate([obs[agent] for agent in reversed(self._env.agents)], axis=-1)
-        return world_state#, world_state_inverse
+        return world_state
 
 
 class ActorFF(nn.Module):
@@ -72,7 +72,12 @@ class ActorFF(nn.Module):
         )(actor_mean)
         pi = distrax.Categorical(logits=action_logits)
 
-        return pi
+        other_action_logits = nn.Dense(
+            self.action_dim, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
+        )(actor_mean)
+        other_action = distrax.Categorical(logits=other_action_logits)
+
+        return pi, other_action
 
 
 class CriticFF(nn.Module):
@@ -97,7 +102,7 @@ class CriticFF(nn.Module):
             1, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
         )(critic)
 
-        return jnp.squeeze(critic, axis=-1) # NOTE nochmal anschauen
+        return jnp.squeeze(critic, axis=-1)
 
 
 class Transition(NamedTuple):
@@ -110,6 +115,7 @@ class Transition(NamedTuple):
     obs: jnp.ndarray
     world_state: jnp.ndarray
     info: jnp.ndarray
+    other_action_pred: jnp.ndarray
 
 def get_rollout(train_state, config, layout):
     env = jaxmarl.make(config["ENV_NAME"], **layout)
@@ -132,8 +138,8 @@ def get_rollout(train_state, config, layout):
         key, key_a0, key_a1, key_s = jax.random.split(key, 4)
         obs = {k: v.flatten() for k, v in obs.items()}
 
-        pi_0 = network_actor.apply(network_params, obs["agent_0"])
-        pi_1 = network_actor.apply(network_params, obs["agent_1"])
+        pi_0, other_action_pred = network_actor.apply(network_params, obs["agent_0"])
+        pi_1, other_action_pred = network_actor.apply(network_params, obs["agent_1"])
 
         actions = {"agent_0": pi_0.sample(seed=key_a0), "agent_1": pi_1.sample(seed=key_a1)}
 
@@ -236,21 +242,15 @@ def make_train(config, layout):
                 rng, _rng = jax.random.split(rng)
 
                 obs_batch = batchify(last_obs, env.agents, config["NUM_ACTORS"])
-                pi = actor_network.apply(train_states[0].params, obs_batch)
+                pi, other_pi = actor_network.apply(train_states[0].params, obs_batch)
                 action = pi.sample(seed=_rng)
                 log_prob = pi.log_prob(action)
                 env_act = unbatchify(action, env.agents, config["NUM_ENVS"], env.num_agents)
                 env_act = {k:v.flatten() for k,v in env_act.items()}
+
                 # VALUE
                 world_state= last_obs["world_state"]
-
                 world_state_batch = jnp.stack([world_state,world_state])
-
-                # obs space example (cramped room): ShapedArray(uint8[16,4,5,52])
-                # 16: Different features such as agent, object positions, order status, etc.
-                # 4: height of room
-                # 5: width of room
-                # 52 (2*26: hardcoded): boolean flags (presence of agents, onions, plates, pots, etc.)
                 x_reshape = 2 * world_state.shape[0]
                 y_reshape = world_state.shape[1] * world_state.shape[2] * world_state.shape[3]
                 world_state_batch = world_state_batch.reshape((x_reshape, y_reshape))
@@ -273,7 +273,8 @@ def make_train(config, layout):
                     log_prob,
                     obs_batch,
                     world_state_batch,
-                    info
+                    info,
+                    other_pi
                 )
                 runner_state = (train_states, shapedRewardState, env_state, obsv, rng)
                 return runner_state, transition
@@ -329,8 +330,13 @@ def make_train(config, layout):
 
                     def _actor_loss_fn(actor_params, traj_batch, gae):
                         # RERUN NETWORK
-                        pi = actor_network.apply(actor_params,traj_batch.obs)
+                        pi, other_action_pred = actor_network.apply(actor_params,traj_batch.obs)
                         log_prob = pi.log_prob(traj_batch.action)
+
+                        other_action_pred_loss_weight = 9.0e-10
+                        log_softmax_preds = jax.nn.log_softmax(other_action_pred.logits)
+                        other_action_prediction_loss = jnp.sum(traj_batch.other_action_pred.logits * log_softmax_preds)
+
 
                         # CALCULATE ACTOR LOSS
                         logratio = log_prob - traj_batch.log_prob
@@ -347,6 +353,7 @@ def make_train(config, layout):
                         )
                         loss_actor = -jnp.minimum(loss_actor1, loss_actor2)
                         loss_actor = loss_actor.mean()
+                        total_loss_actor = loss_actor  + other_action_pred_loss_weight * other_action_prediction_loss
                         entropy = pi.entropy().mean()
                         
                         # For debug purposes
@@ -354,10 +361,10 @@ def make_train(config, layout):
                         clip_frac = jnp.mean(jnp.abs(ratio - 1) > config["CLIP_EPS"])
                         
                         actor_loss = (
-                            loss_actor
+                            total_loss_actor
                             - config["ENT_COEF"] * entropy
                         )
-                        return actor_loss, (loss_actor, entropy, ratio, approx_kl, clip_frac)
+                        return actor_loss, (total_loss_actor, entropy, ratio, approx_kl, clip_frac, other_action_pred_loss_weight * other_action_prediction_loss, loss_actor)
                     
                     def _critic_loss_fn(critic_params, traj_batch, targets):
                         # RERUN NETWORK
@@ -397,6 +404,8 @@ def make_train(config, layout):
                         "ratio": actor_loss[1][2],
                         "approx_kl": actor_loss[1][3],
                         "clip_frac": actor_loss[1][4],
+                        "other_action_prediction_loss": actor_loss[1][5],
+                        "gae_loss": actor_loss[1][6]
                     }
                     
                     return (actor_train_state, critic_train_state), loss_info
@@ -459,7 +468,9 @@ def make_train(config, layout):
                     "scaled_shaped_reward": sr.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(),
                     "scaled_reward": traj_batch.shaped_reward.sum(axis=0).mean(),
                     "base_reward": traj_batch.reward.sum(axis=0).mean(axis=-1),
-                    "actor_loss": loss_info["actor_loss"].sum(axis=0).mean()
+                    "actor_loss": loss_info["actor_loss"].sum(axis=0).mean(),
+                    "other_action_pred_loss": loss_info["other_action_prediction_loss"].sum(axis=0).mean(),
+                    "gae_loss": loss_info["gae_loss"].sum(axis=0).mean()
                 })
             metric["update_steps"] = update_steps
             # metric["shaped_reward"] = shapedRewardState.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(axis=-1) + traj_batch.reward.sum(axis=0).mean(axis=-1)
@@ -492,7 +503,7 @@ def main(config):
         layout = {'layout': overcooked_layouts[layout]}
 
         wandb.init(
-            name = f"low_{layout_name}_mappo",
+            name = f"noap_{layout_name}_mappo",
             group="mappo",
             tags=["r2i", f"{layout_name}", "sr", "final_report", "no_other_action_prediction", "mappo"],
             entity=config["ENTITY"],
@@ -507,7 +518,7 @@ def main(config):
         out = train_jit(rng)
         
         print(f'** Saving Results for {layout_name}')
-        filename = f'{config["ENV_NAME"]}_{layout_name}'
+        filename = f'other_action_pred_{config["ENV_NAME"]}_{layout_name}'
 
         # Animate first seed
         state_seq = get_rollout(out["runner_state"][0], config, layout)

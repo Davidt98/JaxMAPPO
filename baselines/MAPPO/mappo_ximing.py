@@ -1,3 +1,5 @@
+import sys
+sys.path.append("/root/autodl-tmp/work/JaxMAPPO")
 import jax
 import jax.numpy as jnp
 import flax.linen as nn
@@ -19,6 +21,11 @@ from flax import core, struct
 from jax.experimental import io_callback as io_callback
 import matplotlib.pyplot as plt
 
+def CrossEntropyLoss(predicted_action, true_labels):
+    # 使用 softmax 函数将预测的 logits 转换为概率分布
+    cross_entropy_value = true_labels.cross_entropy(predicted_action)
+    return jnp.mean(cross_entropy_value)
+        
 
 class ShapedRewardCoeffManager(struct.PyTreeNode):
     shaped_reward_coeff: float = 1.0
@@ -61,7 +68,7 @@ class ActorFF(nn.Module):
             activation = nn.tanh
         actor_mean = nn.Dense(
             128, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
-        )(x)
+        )(x) # 
         actor_mean = activation(actor_mean)
         actor_mean = nn.Dense(
             128, kernel_init=orthogonal(np.sqrt(2)), bias_init=constant(0.0)
@@ -72,7 +79,7 @@ class ActorFF(nn.Module):
         )(actor_mean)
         pi = distrax.Categorical(logits=action_logits)
 
-        return pi
+        return pi#, next obs from actor_mean, see S3M (?)
 
 
 class CriticFF(nn.Module):
@@ -96,7 +103,7 @@ class CriticFF(nn.Module):
         critic = nn.Dense(
             1, kernel_init=orthogonal(0.01), bias_init=constant(0.0)
         )(critic)
-
+            
         return jnp.squeeze(critic, axis=-1) # NOTE nochmal anschauen
 
 
@@ -149,12 +156,14 @@ def batchify(x: dict, agent_list, num_actors):
     x = jnp.stack([x[a] for a in agent_list])
     return x.reshape((num_actors, -1))
 
+
 def unbatchify(x: jnp.ndarray, agent_list, num_envs, num_actors):
     x = x.reshape((num_actors, num_envs, -1))
     return {a: x[i] for i, a in enumerate(agent_list)}
 
 def make_train(config, layout):
-    env = jaxmarl.make(config["ENV_NAME"], **layout)
+    env = jaxmarl.make(config["ENV_NAME"], **layout) 
+
     config["NUM_ACTORS"] = env.num_agents * config["NUM_ENVS"]
     config["NUM_UPDATES"] = (
         config["TOTAL_TIMESTEPS"] // config["NUM_STEPS"] // config["NUM_ENVS"] 
@@ -174,11 +183,13 @@ def make_train(config, layout):
     def train(rng):
         # INIT NETWORK
         actor_network = ActorFF(env.action_space().n, config)
+        action_predictor = ActorFF(env.action_space().n, config)
         critic_network = CriticFF(config)
         rng, _rng_actor, _rng_critic = jax.random.split(rng, 3)
         ac_init_x = jnp.zeros(env.observation_space().shape)
         ac_init_x = ac_init_x.flatten()
         actor_network_params = actor_network.init(_rng_actor, ac_init_x)
+        action_predictor_params = action_predictor.init(_rng_actor, ac_init_x)
         world_size = env.observation_space().shape
         new_world_size = (world_size[0], world_size[1], world_size[2] * env.num_agents)
         world_size = jnp.zeros(new_world_size)
@@ -214,6 +225,11 @@ def make_train(config, layout):
             params=critic_network_params,
             tx=critic_tx,
         )
+        action_predictor_state = TrainState.create(
+            apply_fn=action_predictor.apply,
+            params=action_predictor_params,
+            tx=actor_tx,
+        )
 
         shapedRewardState = ShapedRewardCoeffManager.create(
             shaped_reward_coeff=1.0
@@ -228,8 +244,19 @@ def make_train(config, layout):
         def _update_step(update_runner_state, unused):
             # COLLECT TRAJECTORIES
             runner_state, update_steps = update_runner_state
-
+                
             def _env_step(runner_state, unused):
+                def update(params, grads, learning_rate=0.001):
+                    grads = grads.logits_parameter()
+                    return params - learning_rate * grads
+
+                def action_predictor_loss_fn(params, logits, targets):
+                    return compute_actor_loss(params, action_predictor_state.apply_fn, logits, targets)
+
+                def compute_actor_loss(params, apply_fn, logits, targets):
+                    loss = targets.cross_entropy(logits)
+                    return jnp.mean(loss)
+                    
                 train_states, shapedRewardState, env_state, last_obs, rng = runner_state
 
                 # SELECT ACTION
@@ -240,7 +267,17 @@ def make_train(config, layout):
                 action = pi.sample(seed=_rng)
                 log_prob = pi.log_prob(action)
                 env_act = unbatchify(action, env.agents, config["NUM_ENVS"], env.num_agents)
+                
                 env_act = {k:v.flatten() for k,v in env_act.items()}
+
+                
+                next_pi = action_predictor.apply(train_states[0].params, obs_batch)
+                
+                action_predictor_grads = jax.grad(action_predictor_loss_fn)(action_predictor_state.params, next_pi, pi)
+
+                new_action_predictor_state = action_predictor_state.apply_gradients(grads=action_predictor_grads)
+
+                
                 # VALUE
                 world_state= last_obs["world_state"]
 
@@ -263,7 +300,9 @@ def make_train(config, layout):
                 obsv, env_state, reward, global_done, info = jax.vmap(env.step, in_axes=(0,0,0))(
                     rng_step, env_state, env_act
                 )
+                print(config["NUM_ACTORS"]) 
                 info = jax.tree_map(lambda x: x.reshape((config["NUM_ACTORS"])), info)
+                print(info)
                 transition = Transition(
                     batchify(global_done, env.agents, config["NUM_ACTORS"]).squeeze(),
                     action,
@@ -292,6 +331,8 @@ def make_train(config, layout):
             last_val = critic_network.apply(train_states[1].params, world_state_batch)
             last_val = last_val.squeeze()
 
+            
+                
             def _calculate_gae(traj_batch, last_val, shaped_reward_coeff):
                 def _get_advantages(gae_and_next_value, transition):
                     gae, next_value, shaped_reward_coeff = gae_and_next_value
@@ -449,7 +490,7 @@ def make_train(config, layout):
             metric = traj_batch.info
             rng = update_state[-1]
 
-            def callback(metric, sr, traj_batch, loss_info):
+            def callback(metric, sr, traj_batch):
                 wandb.log({
                     "total_rewards": sr.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(axis=-1) + traj_batch.reward.sum(axis=0).mean(axis=-1),
                     "shaped_coefficient": sr.shaped_reward_coeff,
@@ -459,12 +500,11 @@ def make_train(config, layout):
                     "scaled_shaped_reward": sr.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(),
                     "scaled_reward": traj_batch.shaped_reward.sum(axis=0).mean(),
                     "base_reward": traj_batch.reward.sum(axis=0).mean(axis=-1),
-                    "actor_loss": loss_info["actor_loss"].sum(axis=0).mean()
                 })
             metric["update_steps"] = update_steps
             # metric["shaped_reward"] = shapedRewardState.shaped_reward_coeff*traj_batch.shaped_reward.sum(axis=0).mean(axis=-1) + traj_batch.reward.sum(axis=0).mean(axis=-1)
             
-            io_callback(callback, None, metric, shapedRewardState, traj_batch, loss_info)
+            io_callback(callback, None, metric, shapedRewardState, traj_batch)
             update_steps = update_steps + 1
             new_shaped_reward_coeff_value = jnp.maximum(0.0, 1 - (update_steps * config["NUM_ENVS"] * config["NUM_STEPS"] / config["TOTAL_TIMESTEPS"]))# config["TOTAL_TIMESTEPS"]
             new_shaped_reward_coeff = jnp.full(
@@ -492,9 +532,9 @@ def main(config):
         layout = {'layout': overcooked_layouts[layout]}
 
         wandb.init(
-            name = f"low_{layout_name}_mappo",
+            name = f"{layout_name}_mappo",
             group="mappo",
-            tags=["r2i", f"{layout_name}", "sr", "final_report", "no_other_action_prediction", "mappo"],
+            tags=["mappo", f"{layout_name}", "no_sr"],
             entity=config["ENTITY"],
             project=config["PROJECT"],
             config=config,
@@ -519,3 +559,52 @@ def main(config):
 
 if __name__ == "__main__":
     main()
+
+'''
+#predict
+class RNNModel(hk.Module):
+    def __init__(self, hidden_size, output_size):
+        super().__init__()
+        self.rnn = hk.RNN(hidden_size)
+        self.linear = hk.Linear(output_size)
+
+    def __call__(self, inputs, hidden):
+        output, hidden = self.rnn(inputs, hidden)
+        output = self.linear(output[-1])  # 取最后一个时间步的输出
+        return output, hidden
+
+def forward_fn(inputs, hidden):
+    model = RNNModel(hidden_size=128, output_size=env.action_space().n)
+    return model(inputs, hidden)
+
+# 初始化和前向传播
+
+
+# 使用Haiku的transform函数将模型转换为函数
+forward = hk.transform(forward_fn)
+params = forward.init(rng, dummy_inputs, dummy_hidden)
+output, hidden = forward.apply(params, rng, dummy_inputs, dummy_hidden)
+print(output)
+
+# 提取状态数据
+states = jnp.array([transition.obs for transition in traj_batch])
+# 将状态数据转换为 (批量大小, 时间步数, 特征维度)
+inputs = jnp.transpose(states, (1, 0, 2))
+
+# 使用 RNN 模型进行前向传播
+output, hidden = forward.apply(params, rng, inputs, dummy_hidden)
+predicted_action = jnp.argmax(output, axis=1)
+
+# 打印预测动作
+print("Predicted actions:", predicted_action)
+
+class CrossEntropyLoss:
+    def __call__(self, predicted_action, true_labels):
+        # 使用 softmax 函数将预测的 logits 转换为概率分布
+        predicted_probs = jax.nn.softmax(predicted_action, axis=-1)
+        
+        # 计算交叉熵损失
+        loss = -jnp.mean(jnp.sum(true_labels * jnp.log(predicted_probs + 1e-8), axis=-1))
+        
+        return loss
+'''
