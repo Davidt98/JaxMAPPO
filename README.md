@@ -1,18 +1,22 @@
-# MAPPO Baseline
+# Dreaming about your Partner: Theory of Mind via Latent Imagination during Multi-Agent Cooperation
 
-Pure JAX MAPPO implementation, based on the PureJaxRL PPO implementation.
 
-## 🔎 Implementation Details
-General features:
-* Agents are controlled by a single network architecture (either FF or RNN).
-* Parameters are shared between agents.
-* Each script has a `WorldStateWrapper` which provides a global `"world_state"` observation.
+## Requirements
 
-## 🚀 Usage
+To create conda environment:
 
-If you have cloned JaxMARL and are in the repository root, you can run the algorithms as scripts, e.g.
+```setup
+conda env create -f r2i_env.yaml -n environment_name
 ```
-python baselines/MAPPO/mappo_rnn_smax.py
+
+## 🚀Training
+
+To train the agents (e.g. r2i) run this command:
+
+```train
+python -m baselines.Recall2Imagine.r2i_mappo_sr_overcooked
 ```
-Each file has a distinct config file which resides within [`config`](https://github.com/FLAIROx/JaxMARL/tree/main/baselines/MAPPO/config).
-The config file contains the MAPPO hyperparameters, the environment's parameters and the `wandb` details (`wandb` is disabled by default).
+
+## 🔎Evaluation
+
+To evaluate the results, visit the provided Weights & Biases (wandB) link after running the code displayed in the terminal.
